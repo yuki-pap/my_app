@@ -8,15 +8,26 @@ RSpec.describe StaticPagesController, type: :controller do
       get :home
 
       expect(response).to be_successful
-      
+
 
     end
+
+    
 
   end
 
   describe "#help" do
     it "responds successfully" do
-      get :home
+      get :help
+
+      expect(response).to be_successful
+
+    end
+  end
+
+  describe "#about" do
+    it "responds successfully" do
+      get :about
 
       expect(response).to be_successful
 
