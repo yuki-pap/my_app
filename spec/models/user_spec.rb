@@ -63,5 +63,11 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("has already been taken")
   end
 
+  it "authentiicated? should return false  with nil dijest" do
+    boolean = user.authenticated?("")
+    expect(boolean).to be_falsey
+
+  end
+
 
 end
