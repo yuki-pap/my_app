@@ -1,6 +1,6 @@
 
 module RequestSpecHelper
-  
+
   include Warden::Test::Helpers
 
   def self.included(base)
@@ -15,6 +15,9 @@ module RequestSpecHelper
   def sign_out(resource)
     logout(warden_scope(resource))
   end
+
+  
+
 
   private
   def warden_scope(resource)
