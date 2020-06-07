@@ -3,6 +3,8 @@ require 'rails_helper'
 describe "User pages", type: :request do
  let!(:user){FactoryBot.create(:user)}
  let!(:other_user){FactoryBot.create(:user)}
+
+ #newアクションの機能テスト
     describe "GET #new" do
       it "returns http success" do
         get signup_path
@@ -11,6 +13,8 @@ describe "User pages", type: :request do
       end
     end
 
+
+#updateアクションの機能テスト
     describe "#update" do
       context "as an authorized user" do
         it "updates a user " do
@@ -21,15 +25,9 @@ describe "User pages", type: :request do
           post login_path, params: { session: { email: user.email,
                                           password: user.password,
                                           remember_me: '1'}}
-
           patch user_path(user), params: { id: user.id, user: user_params }
 
-
           expect(user.reload.name).to eq "NewName"
-
-
-
-
 
         end
 
@@ -53,19 +51,13 @@ describe "User pages", type: :request do
                                           remember_me: '1'}}
           expect(response).to redirect_to  edit_user_path(user)
 
-
-
         end
-
-
       end
-
-
     end
 
 
 
-
+  #indexアクションの機能テスト
     describe "#index" do
       it "redirect login_path with invalid user " do
         get users_path
@@ -73,6 +65,7 @@ describe "User pages", type: :request do
       end
     end
 
+  #destroyアクションの機能テスト
     describe "#destroy" do
       let(:admin_user){FactoryBot.create(:user,admin:true)}
       context "as an authorized user" do
@@ -95,6 +88,49 @@ describe "User pages", type: :request do
           delete user_path(user), params: {id: user.id}
           expect(response).to redirect_to root_path
         end
+
+      end
+    end
+
+    #createアクションの機能テスト
+    describe "#create" do
+      #無効な情報ではユーザーが作成されない
+      it "is invalid with invalid signup information" do
+        expect {
+          post users_path, params: { user: { name: "",
+                                             email: "user@example.com",
+                                             password: "password",
+                                             password_confirmation: "password"}}
+        }.to_not change(User, :count)
+      end
+      #有効な情報かつ、有効化された時ユーザーが作成される
+      it "is valid with valid signup information" do
+        expect {
+          post users_path, params: { user: { name: "ExampleUser",
+                                             email: "user@example.com",
+                                             password: "password",
+                                             password_confirmation: "password"}}
+        }.to change(User, :count).by(1)
+
+        expect(response).to redirect_to root_path
+        #saveの時のインスタンス変数を取得、格納
+        user = assigns(:user)
+        #有効化でのログイン
+        post login_path, params: { session: { email: user.email,
+                                      password: user.password,
+                                    remember_me: '1'}}
+        expect(session[:user_id]).to eq nil
+
+        #有効化トークンが不正な場合
+        get edit_account_activation_path("Invalid token", email: user.email)
+        expect(session[:user_id]).to eq nil
+
+        #トークンは正しく、メールアドレスが無効
+        get edit_account_activation_path(user.activation_token, email: 'wrong')
+        expect(session[:user_id]).to eq nil
+        #トークンもメールアドレスも正しい
+        get edit_account_activation_path(user.activation_token, email: user.email)
+        expect(session[:user_id]).to eq user.id
 
       end
     end

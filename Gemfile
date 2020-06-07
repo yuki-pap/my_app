@@ -22,6 +22,8 @@ gem 'rspec-rails' , '~> 3.7'
 
 gem 'factory_bot_rails', '~> 4.11'
 
+gem 'rails-controller-testing'
+
 gem 'bootstrap-sass','3.3.7'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby

@@ -8,7 +8,7 @@ describe "SignUps", type: :system do
     visit root_path
     click_link "Sign up now!"
   end
-#ログイン失敗
+#許可されない入力でのユーザー登録失敗
   it "user unsuccessfully signs up" do
 
     fill_in "Name", with: ""
@@ -20,7 +20,7 @@ describe "SignUps", type: :system do
 
     expect(current_path).to eq '/users'
   end
-  #ログイン成功
+  #正しい入力でのユーザー登録
   it "user successfully signs up" do
     expect{
 
@@ -33,7 +33,7 @@ describe "SignUps", type: :system do
 
 
 
-    expect(page).to have_content 'essei'
+    expect(page).to have_content "Please check your email to activate your account."
 
 
   end

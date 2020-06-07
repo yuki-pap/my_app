@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
   end
 
   it "authentiicated? should return false  with nil dijest" do
-    boolean = user.authenticated?("")
+    boolean = user.authenticated?("remember","")
     expect(boolean).to be_falsey
 
   end
