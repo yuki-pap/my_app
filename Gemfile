@@ -7,7 +7,8 @@ ruby '2.6.6'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 
 gem 'bcrypt'
-# Use postgresql as the database for Active Record
+
+gem 'mysql2'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
