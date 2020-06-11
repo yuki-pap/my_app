@@ -26,6 +26,8 @@ gem 'factory_bot_rails', '~> 4.11'
 gem 'rails-controller-testing'
 
 gem 'bootstrap-sass','3.3.7'
+
+gem 'dotenv-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -67,6 +69,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production, :staging do
+    gem 'unicorn'
 end
 
 group :test do
