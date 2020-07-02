@@ -1,0 +1,118 @@
+ <p class="study-day"><%= @study.date %></p>
+
+<div class="row show-form">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(method: :patch, scope: :study, url: study_path, local: true) do |f| %>
+
+      <%= f.number_field :time_count, class: 'form-control' %>
+
+      <%= f.submit "記録", class: "btn btn-primary" %>
+
+
+    <% end %>
+    <p>(*15分単位で入力してください)</p>
+  </div>
+</div>
+
+
+<div class="dairys studies">
+  <% if @study_yesterday%>
+    <% if @study_yesterday.content_plan %>
+
+  <div class= "dairy-wrapper">
+         <p>今日の予定は,</p>
+         <div class="dairy">
+          <%= "#{@study_yesterday.content_plan}" %>
+         </div>
+          <%= link_to '予定を編集', edit_plan_path(@study_yesterday),class: "yotei btn btn-lg btn-primary" %>
+            <% unless @study.value %>
+              <%= link_to '予定を完了する' ,evaluate_path(@study.id), method: :patch,class: "yotei btn btn-lg btn-primary" %>
+            <% else %>
+              予定は完了しています
+            <% end %>
+    <% else %>
+
+          今日の予定はまだありません
+
+            <%= link_to '今日の予定を立てる', edit_plan_path(@study_yesterday) %>
+
+    <% end %>
+  <% else %>
+    今日の予定はまだありません
+    <%= link_to '今日の予定を立てる',"" %>
+    <!-- study_yesterdayをcreateするようなコントローラーの作成-->
+  <% end %>
+  </div>
+
+  <div class="study-times">
+    <p>本日の勉強時間</p>
+    <div class="box">
+      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study.count_time %></div>
+    </div>
+    <div class="study-times">
+      <p>今月の総勉強時間</p>
+      <div class="box">
+        <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time_month %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="study-times">
+    <p>今までの総勉強時間</p>
+    <div class="box">
+      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time %></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="link-wrapper">
+  <div class="write-dairy">
+    <div class="links">
+      <p><%= link_to '・日記を書く', edit_diary_path(@study),class:"link" %></p>
+
+      <p><%= link_to '・今までの日記を見る',diaries_path,class:"link" %></p>
+    </div>
+  </div>
+
+  <div class= "planning" >
+    <div class="links">
+        <% unless @study.content_plan %>
+
+         <p><%= link_to '・明日の予定を立てる',edit_plan_path(@study),class:"link"%></p>
+        <% else %>
+            <p><%= link_to "・明日の予定を見る","#",class:"link" %></p>
+    　       <!--plan_showを作る-->
+            <p><%= link_to '・明日の予定を編集',edit_plan_path(@study),class:"link"%></p>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="rank-link">
+    <div class="links">
+      <p><%= link_to '・今日のランキングへ', ranks_today_path,class:"link" %></p>
+      <p><%= link_to '・今月のランキングへ', ranks_month_path,class:"link" %></p>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<p>・過去の勉強履歴</p>
+<div class="paginate-wrapper" %>
+  
+
+  <ul class="users">
+    <% @studies.each do |study|%>
+      <li class="data"><%= study.format_date %></li>
+      <li class="data"><%= study.count_time %></li>
+    <% end %>
+  </ul>
+
+    <%= will_paginate %>
+</div>

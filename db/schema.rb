@@ -10,12 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_112900) do
+ActiveRecord::Schema.define(version: 2020_06_20_101603) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "months", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "month"
+    t.integer "time_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "month"], name: "index_months_on_user_id_and_month", unique: true
+    t.index ["user_id"], name: "index_months_on_user_id"
+  end
 
-  create_table "users", force: :cascade do |t|
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "studies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "count"
+    t.string "date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "content_today"
+    t.text "content_plan"
+    t.boolean "value", default: false, null: false
+    t.index ["user_id", "date"], name: "index_studies_on_user_id_and_date", unique: true
+    t.index ["user_id"], name: "index_studies_on_user_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
@@ -28,7 +58,10 @@ ActiveRecord::Schema.define(version: 2020_06_01_112900) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "months", "users"
+  add_foreign_key "studies", "users"
 end

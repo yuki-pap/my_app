@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "Edit", type: :system do
 
-  let!(:user){FactoryBot.create(:user,email: 'test@example.com')}
+  #FactoryBot.create(:login_user_with_studies).studies
+  let!(:user){User.find_by(email: "test@example.com")}
 
   it "successful edit" do
 
@@ -10,9 +11,9 @@ describe "Edit", type: :system do
 
     visit current_path
 
-    fill_in 'Email',with:'test@example.com'
-    fill_in 'Password',with: 'foobar'
-    click_button 'Log in'
+    fill_in 'メールアドレス',with:'test@example.com'
+    fill_in 'パスワード',with: 'foobar'
+    click_button 'ログイン'
 
     visit current_path
 
@@ -25,13 +26,13 @@ describe "Edit", type: :system do
 
   it "successful edit" do
     visit login_path
-    fill_in 'Email',with:'test@example.com'
-    fill_in 'Password',with: 'foobar'
-    click_button 'Log in'
+    fill_in 'メールアドレス',with:'test@example.com'
+    fill_in 'パスワード',with: 'foobar'
+    click_button 'ログイン'
     visit user_path(user)
-    click_link "Settings"
-    fill_in "Name" , with: "Dukepi"
-    fill_in "Email", with: user.email
+    click_link "ユーザー情報編集"
+    fill_in "名前" , with: "Dukepi"
+    fill_in "メールアドレス", with: user.email
     click_button 'Save changes'
 
     expect(current_path).to eq user_path(user)
@@ -40,16 +41,16 @@ describe "Edit", type: :system do
 
   it "unsuccessful edit" do
     visit login_path
-    fill_in 'Email',with:'test@example.com'
-    fill_in 'Password',with: 'foobar'
-    click_button 'Log in'
+    fill_in 'メールアドレス',with:'test@example.com'
+    fill_in 'パスワード',with: 'foobar'
+    click_button 'ログイン'
 
     visit user_path(user)
-    click_link "Settings"
-    fill_in "Name" , with: "Dukepi"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "foo"
-    fill_in "Confirmation", with: "barr"
+    click_link "ユーザー情報編集"
+    fill_in "名前" , with: "Dukepi"
+    fill_in "メールアドレス", with: user.email
+    fill_in "パスワード", with: "foo"
+    fill_in "パスワード再入力", with: "barr"
     click_button 'Save changes'
 
 

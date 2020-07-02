@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'sessions/new'
@@ -19,11 +20,33 @@ Rails.application.routes.draw do
 
   delete '/logout', to:'sessions#destroy'
 
+  get 'ranks/today'
+
+  get 'ranks/week'
+
+  get 'ranks/month'
+
+  
+
   resources :users
 
-  resources :studys
+  resources :studies
 
   resources :account_activations, only: [:edit]
 
+  resources :evaluates, only: [:update]
+
   resources :password_resets, only:[:new,:create,:edit,:update]
+
+  resources :diaries
+
+  resources :plans
+
+  resources :relationships, only: [:create, :destroy]
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 end

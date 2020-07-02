@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update,:destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update,:destroy,
+                            :following, :followers]
   before_action :correct_user, only: [:edit,:update]
   before_action :admin_user, only: :destroy
 
@@ -8,11 +9,59 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page:params[:page])
+    if params[:key]
+      @users = User.paginate(page:params[:page]).where('name LIKE ?', "%#{params[:key]}%" )
+    elsif params[:study_key]
+
+      @users = User.paginate(page:params[:page]).where('description LIKE ?', "%#{params[:study_key]}%" )
+
+    else
+      @users = User.paginate(page:params[:page])
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @study = @user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
+    @study_yesterday =  @user.studies.find_by(date: Time.current.yesterday.strftime("%Y年%m月%d日"))
+    @count_all = 0
+     @user.studies.each do |f|
+      @count_all += f.count
+    end
+
+
+    case (@count_all * 15) % 60
+    when 0
+      @study_all_time = "#{(@count_all * 15) / 60}時間"
+    when 15
+      @study_all_time = "#{(@count_all * 15) / 60}時間15分"
+    when 30
+      @study_all_time = "#{(@count_all * 15) / 60}時間30分"
+    else 45
+      @study_all_time = "#{(@count_all * 15) / 60}時間45分"
+
+    end
+    @month_all = 0
+    @user.studies.each do |f|
+      if f.created_at.strftime("%Y年%m月") == Time.current.strftime("%Y年%m月")
+        @month_all += f.count
+      end
+    end
+
+
+    case (@month_all * 15) % 60
+    when 0
+      @study_all_time_month = "#{(@month_all * 15) / 60}時間"
+    when 15
+      @study_all_time_month = "#{(@month_all * 15) / 60}時間15分"
+    when 30
+      @study_all_time_month = "#{(@month_all * 15) / 60}時間30分"
+    else 45
+      @study_all_time_month = "#{(@month_all * 15) / 60}時間45分"
+
+    end
+
+
   end
 
   def create
@@ -48,6 +97,29 @@ class UsersController < ApplicationController
 
   end
 
+
+
+  def following
+
+    @title = "フォロー"
+    @user = User.find(params[:id])
+
+    @users = @user.following.paginate(page: params[:page])
+
+    render 'show_follow'
+
+
+  end
+  def followers
+    @title = "フォロワー"
+    @user = User.find(params[:id])
+
+    @users = @user.followers.paginate(page: params[:page])
+
+    render 'show_follow'
+  end
+
+
   private
 
     def user_params
@@ -55,13 +127,7 @@ class UsersController < ApplicationController
                         :password_confirmation)
     end
 
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in"
-        redirect_to login_url
-      end
-    end
+
 
     def correct_user
       @user = User.find(params[:id])

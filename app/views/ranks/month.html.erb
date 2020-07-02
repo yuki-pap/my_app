@@ -1,0 +1,22 @@
+<h1 class="rank-title">今月のランキング</h1>
+<% n = 0 %>
+<div class="ranks-wrapper">
+  <% @all_ranks.each_with_index do |f, i|%>
+    <div class="ranks">
+      <% if (n+1) <= 3 %>
+        <%= image_tag 'rank.jpeg',class: "rank-icon" %>
+      <% else %>
+        <h2 class="kuuhaku"></h2>
+      <% end %>
+        <h2 class="rank"> <%= "#{n+1}位"%> </h2>
+        <h2 class="name"><%= f.name%></h2>
+        <h2 class="time"><%= f.months.find_by(month: Time.current.strftime("%Y年%m月")).count_time %> </h2>
+
+    </div>
+      <% if @all_ranks[i+1] %>
+        <% unless @all_ranks[i].month.find_by(month: Time.current.strftime("%Y年%m月")).time_count == @all_ranks[i+1].months.find_by(month: Time.current.strftime("%Y年%m月")).time_count %>
+          <% n += 1 %>
+        <% end %>
+      <% end %>
+   <% end %>
+</div>

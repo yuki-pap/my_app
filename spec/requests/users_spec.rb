@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 describe "User pages", type: :request do
- let!(:user){FactoryBot.create(:user)}
+  #Studiesをもつユーザーの作成
+ FactoryBot.create(:login_user_with_studies).studies
+ #other_userの作成と、上記で作成したuser,studyを参照するためのlet
  let!(:other_user){FactoryBot.create(:user)}
+ let!(:study){User.find_by(email: "test@example.com").studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))}
+ let!(:user){User.find_by(email: "test@example.com")}
 
  #newアクションの機能テスト
     describe "GET #new" do
@@ -19,12 +23,12 @@ describe "User pages", type: :request do
       context "as an authorized user" do
         it "updates a user " do
 
-
           user_params = FactoryBot.attributes_for(:user, name: "NewName" )
 
-          post login_path, params: { session: { email: user.email,
-                                          password: user.password,
+          post login_path, params: { session: { email: "test@example.com",
+                                          password: "foobar",
                                           remember_me: '1'}}
+
           patch user_path(user), params: { id: user.id, user: user_params }
 
           expect(user.reload.name).to eq "NewName"
@@ -35,6 +39,7 @@ describe "User pages", type: :request do
 
       context "as a guest" do
         it "redirects to the login page" do
+          #ログインしていなければ更新できない
           user_params = FactoryBot.attributes_for(:user, name: "NewName")
           patch user_path(user), params: { id: user.id, user: user_params}
           expect(response).to have_http_status "302"
@@ -44,17 +49,17 @@ describe "User pages", type: :request do
         end
 
         it "successful edit with frendly forwarding" do
+          #フレンドリーフォーワーディングのテスト
           user_params = FactoryBot.attributes_for(:user, name: "NewName")
           get edit_user_path(user)
-          post login_path, params: { session: { email: user.email,
-                                          password: user.password,
+          post login_path, params: { session: { email: "test@example.com",
+                                          password: "foobar",
                                           remember_me: '1'}}
-          expect(response).to redirect_to  edit_user_path(user)
+          expect(response).to redirect_to edit_user_path(user)
 
         end
       end
     end
-
 
 
   #indexアクションの機能テスト
@@ -67,6 +72,7 @@ describe "User pages", type: :request do
 
   #destroyアクションの機能テスト
     describe "#destroy" do
+      #adminをもtたユーザーの作成
       let(:admin_user){FactoryBot.create(:user,admin:true)}
       context "as an authorized user" do
         it "deletes a user" do
@@ -81,12 +87,12 @@ describe "User pages", type: :request do
       end
 
       context "as an unauthorized user" do
-        it "redirect to root_path" do
+        it "redirect to login_path" do
           post login_path, params: { session: { email: user.email,
                                         password: user.password,
                                       remember_me: '1'}}
-          delete user_path(user), params: {id: user.id}
-          expect(response).to redirect_to root_path
+          delete user_path(other_user), params: {id: user.id}
+          expect(response).to redirect_to login_path
         end
 
       end
@@ -133,6 +139,35 @@ describe "User pages", type: :request do
         expect(session[:user_id]).to eq user.id
 
       end
+    end
+
+ #following,followersの機能テスト
+    describe "#following,#followers" do
+      context "as a loginuser" do
+        it "returns success" do
+        #ログイン
+         post login_path, params: { session: { email: "test@example.com",
+                                        password: "foobar",
+                                        remember_me: '1'}}
+          get following_user_path(user)
+          expect(response).to be_success
+          get followers_user_path(user)
+          expect(response).to be_success
+        end
+
+      end
+
+      context "as a guest" do
+        it "redirect login_path" do
+          get following_user_path(user)
+          expect(response).to redirect_to login_path
+          get followers_user_path(user)
+          expect(response).to redirect_to login_path
+        end
+
+
+      end
+
     end
 
 end

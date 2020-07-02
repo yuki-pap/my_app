@@ -1,14 +1,17 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+<div class="top-wrapper">
 
-  <h2>
-    This is the home page for the
-    <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <h1>さあ、みんなと一緒に勉強しよう！</h1>
+
+    <img src="/assets/study.jpg">
+
+
+    <% unless logged_in? %>
+      <%= link_to "新規登録して利用する", signup_path, class: "btn btn-lg btn-primary signup" %>
+
+      <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary login" %>
+    <% else %>
+      <%= link_to "今日の勉強を開始する", new_study_path,class: "btn btn-lg btn-primary benkyo"%>
+    <% end %>
+
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>

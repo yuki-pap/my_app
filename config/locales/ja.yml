@@ -17,6 +17,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード再入力
+        description: 勉強内容
         created_at: 登録日時
         updated_at: 更新日時
 
@@ -218,3 +219,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  will_paginate:
+    previous_label: 前
+    next_label: 次

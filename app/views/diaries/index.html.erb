@@ -1,0 +1,20 @@
+
+<h1>今までの日記</h1>
+<div class="paginate-wrapper" >
+
+
+
+  <div class="contents-wrapper">
+    <% @diaries.each do |f| %>
+      <div class="contents">
+        <p class="date"><%= f.date%></p>
+        <div class="content">
+          <p><%= f.content_today%></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="page">
+  <%= will_paginate %>
+  </div>
+</div>

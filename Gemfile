@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 
-gem 'rspec-rails' , '~> 3.7'
+gem 'rspec-rails' , '~> 3.7.1'
 
 gem 'factory_bot_rails', '~> 4.11'
 
@@ -28,6 +28,8 @@ gem 'rails-controller-testing'
 gem 'bootstrap-sass','3.3.7'
 
 gem 'dotenv-rails'
+gem 'webpacker', github: 'rails/webpacker'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -42,7 +44,11 @@ gem 'faker'
 
 gem 'will_paginate', '3.1.7'
 
+gem 'whenever' , require: false
+
 gem 'bootstrap-will_paginate','1.0.0'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -69,6 +75,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'foreman'
 end
 
 group :production, :staging do

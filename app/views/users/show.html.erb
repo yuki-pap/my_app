@@ -2,12 +2,96 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
+
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      <p>
-        <%= link_to '勉強を始める' , new_study_path %>
-      </p>
+      <section class="stats">
+        <% @user ||= current_user %>
+        <div class="stats">
+          <%= link_to "#{@user.following.count}follow",following_user_path(@user),class:"follow_link"%>
+
+          <%= link_to "#{@user.followers.count}follower",followers_user_path(@user),class:"follow_link"%>
+
+
+
+
+        </div>
+      </section>
+
+
     </section>
   </aside>
+  <div class="profiles">
+    <p>学習分野</p>
+    <div class="profile">
+      <% if @user.description %>
+        <%= @user.description%>
+      <% else %>
+        <%= link_to "学習分野を入力してください",edit_user_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="dairys">
+
+    <% if @study_yesterday&.content_plan %>
+
+  <div class= "dairy-wrapper">
+         <p>今日の予定は,</p>
+         <div class="dairy">
+          <%= "#{@study_yesterday.content_plan}" %>
+         </div>
+  <!-- create直後の　study_yesterday問題-->
+          <%= link_to '予定を編集', edit_plan_path(@study_yesterday),class: "yotei btn btn-lg btn-primary" %>
+            <% unless @study.value %>
+              <%= link_to '予定を完了する' ,evaluate_path(@study.id), method: :patch,class: "yotei btn btn-lg btn-primary" %>
+            <% else %>
+              予定は完了しています
+            <% end %>
+    <% else %>
+
+
+            <p>今日の予定はまだありません</p>
+
+          <% if current_user.id == @user.id%>
+            <%= link_to '今日の予定を立てる', edit_plan_path(@study_yesterday) %>
+          <% end %>
+
+    <% end %>
+
+  </div>
+
+  <div class="study-times">
+    <p>本日の勉強時間</p>
+    <div class="box">
+      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study.count_time %></div>
+    </div>
+    <div class="study-times">
+      <p>今月の総勉強時間</p>
+      <div class="box">
+        <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time_month %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="study-times">
+    <p>今までの総勉強時間</p>
+    <div class="box">
+      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time %></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div>
+<% if current_user.id == (params[:id]).to_i %>
+  <p>
+    <%= link_to '勉強を始める' , new_study_path, class: "head-link btn btn-lg btn-primary " %>
+  </p>
+<% end %>
 </div>

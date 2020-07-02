@@ -1,0 +1,16 @@
+
+<div class="edit-wrapper">
+  <div class="editer">
+    <%= form_with method: :patch, scope: :plan, url: plan_path, local: true do |f| %>
+
+      <div class="image">
+        <%= f.text_area :content_plan, value: @study.content_plan, class: 'form-control' %>
+      </div>
+
+
+      <%= f.submit "予定を立てる", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>

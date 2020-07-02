@@ -6,15 +6,15 @@ describe "SignUps", type: :system do
 
   before do
     visit root_path
-    click_link "Sign up now!"
+    click_link "新規登録して利用する"
   end
 #許可されない入力でのユーザー登録失敗
   it "user unsuccessfully signs up" do
 
-    fill_in "Name", with: ""
-    fill_in "Email", with: "user@invalid"
-    fill_in "Password",with: "foo"
-    fill_in "Confirmation",with: "bar"
+    fill_in "名前", with: ""
+    fill_in "メールアドレス", with: "user@invalid"
+    fill_in "パスワード",with: "foo"
+    fill_in "パスワード再入力",with: "bar"
 
     click_button "Create my account"
 
@@ -24,10 +24,10 @@ describe "SignUps", type: :system do
   it "user successfully signs up" do
     expect{
 
-    fill_in "Name", with: "essei"
-    fill_in "Email", with: "essei@valid.com"
-    fill_in "Password",with: "password"
-    fill_in "Confirmation",with: "password"
+    fill_in "名前", with: "essei"
+    fill_in "メールアドレス", with: "essei@valid.com"
+    fill_in "パスワード",with: "password"
+    fill_in "パスワード再入力",with: "password"
     click_button "Create my account"
     }.to change(User, :count).by(1)
 

@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
 
-  let(:user) { FactoryBot.create(:user)}
+  let!(:user){FactoryBot.create(:user,name:"naoya")}
+  let!(:another_user){FactoryBot.create(:user,name:"essei")}
+
 
   it "has a valid factory" do
 
@@ -17,7 +19,7 @@ RSpec.describe User, type: :model do
 
     user.valid?
 
-    expect(user.errors[:name]).to include("can't be blank")
+    expect(user.errors[:name]).to include("を入力してください")
   end
 
   it "is invalid without a email" do
@@ -25,7 +27,7 @@ RSpec.describe User, type: :model do
 
     user.valid?
 
-    expect(user.errors[:email]).to include("can't be blank")
+    expect(user.errors[:email]).to include("を入力してください")
   end
 
   it {is_expected.to validate_length_of(:name).is_at_most(50)}
@@ -60,7 +62,7 @@ RSpec.describe User, type: :model do
     FactoryBot.create(:user,email: "essei@example.com")
     user = FactoryBot.build(:user,email:"Essei@example.com")
     user.valid?
-    expect(user.errors[:email]).to include("has already been taken")
+    expect(user.errors[:email]).to include("はすでに存在します")
   end
 
   it "authentiicated? should return false  with nil dijest" do
@@ -68,6 +70,21 @@ RSpec.describe User, type: :model do
     expect(boolean).to be_falsey
 
   end
+
+#follow,unfollowのテスト
+  describe "should follow and unfollow a user" do
+    it "works correctly" do
+      expect(user.following?(another_user)).to be_falsey
+      user.follow(another_user)
+      expect(user.following?(another_user)).to be_truthy
+      expect(another_user.followers.include?(user)).to be_truthy
+      user.unfollow(another_user)
+      expect(user.following?(another_user)).to be_falsey
+    end
+  end
+
+
+
 
 
 end

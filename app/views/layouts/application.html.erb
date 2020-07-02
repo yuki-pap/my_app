@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title)%>| Ruby on Rails Tutorial Sample App</title>
+    <title><%= yield(:title)%>| 俺の勉強部屋</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,44 +14,56 @@
   </head>
 
   <body>
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse head">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+    <%= link_to "俺の勉強部屋", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+      <ul>
+
         <% if logged_in? %>
-          <li><%= link_to "Users",users_path %></li>
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+            <a href="#" class="dropdown-toggle head-link btn btn-lg btn-primary" data-toggle="dropdown">
+              アカウント <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "プロフィール", current_user %></li>
+              <li><%= link_to "ユーザー検索",users_path %></li>
+              <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+
               <li class="divider"></li>
               <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
+                <%= link_to "ログアウト", logout_path, method: :delete %>
               </li>
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle head-link btn btn-lg btn-primary" data-toggle="dropdown">
+              ランキング <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "今日のランキング", ranks_today_path%></li>
+              <li><%= link_to "今月のランキング", ranks_month_path %></li>
+            </ul>
+          </li>
+          <li><%= link_to "学習を開始", study_path(current_user.studies&.find_by(date: Time.current.strftime("%Y年%m月%d日"))), class: "head-link btn btn-lg btn-primary" %></li>
+          <li><%= link_to "ホームへ戻る", root_path, class: "head-link btn btn-lg btn-primary" %></li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to "ログイン", login_path, class: "head-link btn btn-lg btn-primary " %></li>
         <% end %>
       </ul>
     </nav>
   </div>
 </header>
-    <div class="container">
+    <div class="container <%=@view%>">
       <% flash.each do |message_type,message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
 
      <%= yield %>
-     <%= render 'layouts/footer'%>
-     <%= debug(params) if Rails.env.development? %>
+
+     <%= debug(params) if Rails.env.development? && false %>
     </div>
+    <%= render 'layouts/footer'%>
   </body>
 </html>

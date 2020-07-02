@@ -1,0 +1,15 @@
+<div class="edit-wrapper">
+  <div class="editer">
+    <%= form_with method: :patch, scope: :dairy, url: diary_path, local: true do |f| %>
+
+      <div class="image">
+        <%= f.text_area :content_today, value: @study.content_today, class: 'form-control' %>
+      </div>
+
+
+      <%= f.submit "日記を付ける", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>
