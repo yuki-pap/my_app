@@ -15,4 +15,36 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
+import Vue from 'vue/dist/vue.esm';
+import axios from 'axios';
+
+
+const app = new Vue({
+    el: '#hello',
+    data: {
+      id: 331,
+      counts: [0,1,2,3,4,5,6,7,8,9],
+      color: "white",
+      num: 0,
+      data: 0
+
+
+
+
+    },
+    methods: {
+      update_count: function(e){
+          const a =　e.currentTarget.getAttribute('data-id');
+          document.getElementById(a).style.background = "red";
+
+
+
+      }
+
+
+
+
+
+  }
+
+});

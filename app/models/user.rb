@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token,:reset_token
   has_many :studies, dependent: :destroy
   has_many :months, dependent: :destroy
+  has_many :markers, dependent: :destroy
   has_many :active_relationships,class_name: "Relationship",
                     foreign_key:"follower_id",
                     dependent: :destroy
@@ -21,7 +22,7 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password,presence:true,length:{minimum:6},allow_nil:true
-
+  validates :markers, length: { maximum: 6}
   #渡された文字列のハッシュ値を渡す
 
   def User.digest(string)

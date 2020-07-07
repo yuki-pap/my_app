@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   get 'ranks/month'
 
-  
+
 
   resources :users
 
@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   resources :diaries
 
   resources :plans
+
+  resources :markers, only: [:create, :new,:update, :edit]
 
   resources :relationships, only: [:create, :destroy]
 

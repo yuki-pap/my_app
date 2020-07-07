@@ -20,6 +20,9 @@ ja:
         description: 勉強内容
         created_at: 登録日時
         updated_at: 更新日時
+      marker:
+        color: 色
+        field: 学習分野
 
   date:
     abbr_day_names:

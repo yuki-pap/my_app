@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_101603) do
+ActiveRecord::Schema.define(version: 2020_07_06_012234) do
+
+  create_table "markers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "color"
+    t.bigint "user_id"
+    t.string "field"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["color"], name: "index_markers_on_color", unique: true
+    t.index ["field"], name: "index_markers_on_field", unique: true
+    t.index ["user_id"], name: "index_markers_on_user_id"
+  end
 
   create_table "months", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -20,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_06_20_101603) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "month"], name: "index_months_on_user_id_and_month", unique: true
     t.index ["user_id"], name: "index_months_on_user_id"
+  end
+
+  create_table "panels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "color"
+    t.boolean "switch"
+    t.integer "number"
+    t.bigint "study_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["number"], name: "index_panels_on_number", unique: true
+    t.index ["study_id"], name: "index_panels_on_study_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,6 +84,8 @@ ActiveRecord::Schema.define(version: 2020_06_20_101603) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "markers", "users"
   add_foreign_key "months", "users"
+  add_foreign_key "panels", "studies"
   add_foreign_key "studies", "users"
 end

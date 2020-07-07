@@ -46,6 +46,11 @@
               <li><%= link_to "今月のランキング", ranks_month_path %></li>
             </ul>
           </li>
+          <% unless current_user.markers %>
+            <li><%= link_to "マーカーを登録する", new_marker_path, class: "head-link btn btn-lg btn-primary" %></li>
+          <% else %>
+            <li><%= link_to "マーカーを編集する", edit_marker_path(1), class: "head-link btn btn-lg btn-primary" %></li>
+          <% end %>
           <li><%= link_to "学習を開始", study_path(current_user.studies&.find_by(date: Time.current.strftime("%Y年%m月%d日"))), class: "head-link btn btn-lg btn-primary" %></li>
           <li><%= link_to "ホームへ戻る", root_path, class: "head-link btn btn-lg btn-primary" %></li>
         <% else %>

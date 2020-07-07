@@ -20,9 +20,10 @@
 # Learn more: http://github.com/javan/whenever
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 
-ENV.each { |k,v| env(k, v)}
-
+ENV.each { |k,v| env k.to_sym, v}
 set :environment, :development
+
+set :path, "my_app"
 
 set :output, "#{Rails.root.to_s}/log/cron.log"
 

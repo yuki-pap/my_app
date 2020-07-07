@@ -1,7 +1,7 @@
 class StudiesController < ApplicationController
 
   before_action :logged_in_user, only: [:create,:show,:new,:update]
-
+  protect_from_forgery except: [:create, :update]
 
   def show
     unless current_user.months.find_by(month: Time.current.strftime("%Y年%m月"))
@@ -80,21 +80,13 @@ class StudiesController < ApplicationController
 
   def update
 
+   @study = current_user.studies.find(params[:id])
    num =  params[:study][:time_count]
-
-   studies = current_user.studies
-
-   studies.each do |study|
-
-     if (study.created_at.to_s.match(/#{Date.today.to_s}.+/))
-       @study = study
-     end
-
-   end
 
    number = @study.count + (num.to_i / 15)
 
    @month = current_user.months.find_by(month: Time.current.strftime("%Y年%m月"))
+
 
    if @study.update_attributes(count: number)
 
@@ -102,7 +94,7 @@ class StudiesController < ApplicationController
 
       @month.update_attributes(time_count: n)
 
-      redirect_to @study
+      render 'show', formats:'json'
 
    else
      redirect_to @study

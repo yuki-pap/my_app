@@ -1,5 +1,5 @@
 
-FROM ruby:2.5.1
+FROM ruby:2.6.6
 
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -13,11 +13,12 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 apt-get update && apt-get install -y yarn
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-apt-get install nodejs
+apt-get install -y nodejs
 
 RUN apt-get install -y cron
 
 ENV RAILS_ROOT /my_app
+
 
 
 RUN mkdir -p $RAILS_ROOT
@@ -36,7 +37,3 @@ RUN bundle install
 COPY . .
 
 RUN mkdir -p tmp/sockets
-
-RUN bundle exec whenever --update-crontab
-
-CMD ["cron", "-f"]

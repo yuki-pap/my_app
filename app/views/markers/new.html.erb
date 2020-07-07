@@ -1,0 +1,30 @@
+
+<div class="new-markers">
+  <h1>勉強分野を登録しよう</h1>
+  <%= form_with model: @markers, url: markers_path, local: true do |form| %>
+    <% @markers.collection.each do |marker|%>
+      <%= fields_for 'markers[]', marker do |f| %>
+      
+        <div class="new-marker">
+          <div class="field color-field">
+            <%= f.label :color ,"Color"%>
+            <%= f.text_field :color, class: "form-control #{marker.color}" ,readonly: true %>
+          </div>
+
+          <div class="field form-field">
+            <%= f.label :field %>
+            <%= f.text_field :field, class: "form-control " %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          </div>
+        </div>
+
+        <% end %>
+    <% end %>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+<%= @markers.collection %>
