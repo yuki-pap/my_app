@@ -1,6 +1,6 @@
 class MarkersController < ApplicationController
   def new
-    unless current_user.markers.count == 6
+    unless current_user.markers.size == 6
       @markers = MarkerCollection.new
     else
       @marker = []
@@ -56,7 +56,7 @@ class MarkersController < ApplicationController
     markers = markers_params
     markers.each do |key, value|
       unless current_user.markers.find(key).update_attributes(value)
-         
+
       end
     end
 

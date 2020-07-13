@@ -1,8 +1,9 @@
 class StudiesController < ApplicationController
 
   before_action :logged_in_user, only: [:create,:show,:new,:update]
+  before_action :create_graph, only: [:show]
   protect_from_forgery except: [:create, :update]
-
+#selectなどを使ってパフォーマンス上げる
   def show
     unless current_user.months.find_by(month: Time.current.strftime("%Y年%m月"))
       month_sum = 0
@@ -15,6 +16,8 @@ class StudiesController < ApplicationController
       current_user.months.create(month:Time.current.strftime("%Y年%m月"),
                                  time_count: month_sum)
       @study = current_user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
+
+
 
     end
 
@@ -29,6 +32,8 @@ class StudiesController < ApplicationController
     @studies.each do |f|
       @count_all += f.count
     end
+
+
 
 
     case (@count_all * 15) % 60
@@ -66,6 +71,8 @@ class StudiesController < ApplicationController
 
     end
 
+    
+
 
   end
 
@@ -94,7 +101,7 @@ class StudiesController < ApplicationController
 
       @month.update_attributes(time_count: n)
 
-      render 'show', formats:'json'
+      redirect_to @study
 
    else
      redirect_to @study
@@ -128,5 +135,19 @@ class StudiesController < ApplicationController
   end
 
   private
+
+  def create_graph
+    if current_user.graphs.size == 0
+      200.times do |n|
+        current_user.graphs.create!
+      end
+    end
+    #方眼紙切り替えの処理
+    if current_user.graphs.where(fill: false).select('fill').size == 0
+      200.times do |n|
+        current_user.graphs.find(n).update_attributes(fill: false,color_num: 0)
+      end
+    end
+  end
 
 end

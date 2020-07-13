@@ -1,6 +1,6 @@
 class Study < ApplicationRecord
   belongs_to :user
-  has_many :panels, dependent: :destroy
+
   validates :user_id,presence: true, uniqueness: {scope: :date}
   validates :date,presence: true
   validates :count, numericality: { only_integer: true, greater_than:-1,less_than:97}

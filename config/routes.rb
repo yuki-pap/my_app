@@ -51,4 +51,13 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+  namespace :api, {format: 'json'} do
+    namespace :v1 do
+      resources :graphs, only: [:index, :create]
+      get 'graphs/color'
+    end
+  end
+
+
 end

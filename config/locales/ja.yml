@@ -17,7 +17,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード再入力
-        description: 勉強内容
+        description: 自己紹介
         created_at: 登録日時
         updated_at: 更新日時
       marker:

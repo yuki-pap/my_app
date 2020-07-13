@@ -1,32 +1,78 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+  <% provide(:title, "Edit user") %>
+  <p class="edit-title">ユーザー情報の編集</p>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with model: @user, local: true do |f| %>
-      <%= render 'shared/error_messages' %>
+<div id='edit' class="user-edit">
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+  <ul id="tabMenu">
+    <li v-on:click="change(1)" v-bind:class="{'active': active === 1}">&#9660;　パスワード変更</li>
+    <li v-on:click="change(2)" v-bind:class="{'active': active === 2}">&#9660;　名前、メールアドレス変更</li>
+    <li v-on:click="change(3)" v-bind:class="{'active': active === 3}">&#9660;　プロフィール編集</li>
+  </ul>
+ <div class="content">
+  <div v-if="active === 1">
+    <div class="row">
+      <div class="col-md-6">
+        <%= form_with model: @user, local: true do |f| %>
+          <%= render 'shared/error_messages' %>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control'%>
+          <%= f.submit "OK !", class: "btn update" %>
+        <% end %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
-
-    <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">change</a>
+      </div>
     </div>
+
+
+  </div>
+  <div v-else-if="active === 2">
+    <div class="row">
+      <div class="col-md-6 ">
+        <%= form_with model: @user, local: true do |f| %>
+          <%= render 'shared/error_messages' %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+
+
+          <%= f.submit "OK !", class: "btn update " %>
+        <% end %>
+
+
+      </div>
+    </div>
+
+
+  </div>
+  <div v-else-if="active === 3">
+    <div class="row">
+      <div class="col-md-6 profile">
+        <%= form_with model: @user, local: true do |f| %>
+          <%= render 'shared/error_messages' %>
+
+          <%= f.label :description ,'自己紹介'%>
+          <%= f.text_area :description, class: 'form-control'%>
+
+          <%= f.submit "OK !", class: "btn update" %>
+        <% end %>
+
+
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+
+</div>
+
+
+<%= javascript_pack_tag 'user_edit.js' %>

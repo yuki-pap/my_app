@@ -49,7 +49,8 @@ header{
 
       }
     li:hover{
-      font-size: 20px;
+
+
       color: white;
 
 
@@ -61,20 +62,24 @@ header{
   background-color: #009999;
   border-color: white;
   font-size: 15px;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
  }
  .head-link:hover{
    background-color: #009999;
-   font-size: 22px;
+   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+   transform: translateY(-0.1875em);
+
    border-color: white;
  }
  .dropdown-toggle:active{
    background-color: #009999;
-   font-size: 22px;
+
    border-color: white;
  }
  .dropdown-toggle:visited{
    background-color: #009999;
-   font-size: 22px;
+
    border-color: white;
  }
 
@@ -413,43 +418,15 @@ input {
     margin-top: 25px;
   }
 }
-.dairys{
-
-  display: flex;
-
- .dairy-wrapper{
-   margin-right: 50px;
-   width:45%;
-  p{
-    margin-top: 10px;
-    margin-left: 10px;
-
-  }
-  .dairy{
-  border: double 5px gray;
-  height:350px;
-
-  padding:10px;
-   }
 
 
-   .yotei{
-     margin:5px 0;
-
-     font-size:15px;
-     padding: 5px;
-    }
- }
-}
+  .study-times{
 
 
-.study-times{
-
-
-    p{
-      margin-top: 10px;
-      display: block;
-    }
+      p{
+        margin-top: 10px;
+        display: block;
+      }
     .box{
       display: flex;
        p{
@@ -469,7 +446,6 @@ input {
         border-radius: 6px;
       }
     }
-
     .study-times{
 
 
@@ -477,43 +453,180 @@ input {
           margin-top: 10px;
           display: block;
         }
-        .box{
-          display: flex;
-           p{
-            font-size:28px;
-            padding-left: 0px;
-            padding-top: 0px;
-            margin-top: 0px;
-           }
-          .study-time{
-            border: 2px solid gray;
-            width:120px;
-            height:40px;
-            padding: 5px;
-            margin-left: 10px;
-            margin-right: 10px;
-            text-align: center;
-            border-radius: 6px;
-          }
+      .box{
+        display: flex;
+         p{
+          font-size:28px;
+          padding-left: 0px;
+          padding-top: 0px;
+          margin-top: 0px;
+         }
+        .study-time{
+          border: 2px solid gray;
+          width:120px;
+          height:40px;
+          padding: 5px;
+          margin-left: 10px;
+          margin-right: 10px;
+          text-align: center;
+          border-radius: 6px;
         }
-
-
       }
+    }
+}
+
+
+//user#update//
+.alert{
+  margin-top: 20px;
+}
+.edit-title{
+  font-size: 31px;
+  text-align: left;
+  margin-left:5px;
+  margin-top: 80px;
+
+}
+.user-edit{
+  margin-top:30px;
+  margin-left: 20px;
+
+#tabMenu{
+  width:350px;
+  margin-top: 1px;
+  list-style:none;
+  display: inline-block;
+  margin-right: 5px;
+  color:gray;
+  li{
+    background-color: gray;
+    color:white;
+    border-radius: 4px;
+    opacity: 0.9;
+    padding: 3px;
+    margin-bottom:10px;
+    transition: all 0.3s ease 0s;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+  }
+  li:hover{
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.1875em);
+
+    border-color: white;
   }
 
+}
+.content{
+    margin-top: 40px;
+    margin-left: 250px;
+
+  .row{
+    .col-md-6{
+      width: 600px;
+      height: 400px;
+      label{
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .update{
+        width:100px;
+        margin-left:230px;
+        margin-top: 25px;
+      }
+    }
+    .profile{
+      .form-control{
+        height: 200px;
+      }
+    }
+  }
+
+}
+}
+
+//study/show*/
+.color-bind{
+  margin-left: 40px;
+  margin-top: 30px;
+  font-weight: bold;
+
+}
+.color-select{
+  margin-left: 30px;
+  margin-top:50px;
+  display: inline-flex;
+  flex-wrap: wrap;
+
+  form{
+
+    label{
+      padding:2px 5px;
+      border-radius: 5px;
+      margin-left:30px;
+      margin-bottom: 20px;
+      font-weight:normal;
+    }
+    .red{
+      background-color: rgba(204,51,51,0.5)
+    }
+    .yellow{
+      background-color: rgba(255,255,51,0.5)
+    }
+    .blue{
+      background-color: rgba(102,153,255,0.5)
+    }
+    .light-blue{
+      background-color: rgba(102,204,255,0.5)
+    }
+    .green{
+      background-color: rgba(51,153,153,0.5)
+    }
+    .yellow-green{
+      background-color: rgba(102,204,153,0.5)
+    }
+    .white{
+      background-color: white;
+    }
+    input{
+      width:40px;
+      margin-left:5px;
+      margin-right: 70px;
+    }
+  }
+}
 
 
-/*users/show*/
+#red{
+  background-color: rgba(204,51,51,0.6)
+}
+#yellow{
+  background-color: rgba(255,255,51,0.6)
+}
+#blue{
+  background-color: rgba(102,153,255,0.6)
+}
+#light-blue{
+  background-color: rgba(102,204,255,0.6)
+}
+#green{
+  background-color: rgba(51,153,153,0.6)
+}
+#yellow-green{
+  background-color: rgba(102,204,153,0.6)
+}
+#white{
+  background-color: white;
+}
+
 
 .nurie_table{
-  border-radius: 8px;
+  border-radius: 15px;
   margin-bottom: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 40px;
   table {
 	border-collapse: collapse;
   width:90%;
-
 
 
  tr{
@@ -522,13 +635,16 @@ input {
 	border: solid 1px;
 
 
-  width:20px;
- padding:20px 19px;
-    }
+  width:30px;
+  height: 30px;
+  padding: 4px;
+
+
+  }
   }
 }
 }
-
+//見出し//
 .study-day{
   display: block;
   font-size: 30px;
@@ -554,7 +670,111 @@ input {
   }
  }
 }
+.dairys{
 
+  display: flex;
+  margin-left: 30px;
+ .dairy-wrapper{
+   margin-right: 50px;
+   width:45%;
+  p{
+    margin-top: 10px;
+    margin-left: 10px;
+
+  }
+  .dairy{
+  border: double 5px gray;
+  height:350px;
+
+  padding:10px;
+   }
+
+
+   .yotei{
+     margin:5px 0;
+
+     font-size:15px;
+     padding: 5px;
+    }
+ }
+}
+
+.study-time-wrapper{
+
+  display: flex;
+  position: fixed;
+    top:95px;
+    right:60px;
+  z-index: 15;
+  .study-times{
+      display: flex;
+
+      p{
+        margin-top: 10px;
+        display: block;
+        font-weight: bold;
+      }
+    .box{
+      display: flex;
+       p{
+
+        font-size:28px;
+        padding-left: 0px;
+        padding-top: 0px;
+        margin-top: 0px;
+       }
+      .study-time{
+        font-weight: bold;
+        border: 2px solid gray;
+        width:120px;
+        height:40px;
+        padding: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+        border-radius: 6px;
+      }
+    }
+}
+
+}
+
+
+//ダイアログ//
+
+.dg-container{
+  position: fixed;
+    top:33%;
+    left:30%;
+
+  background-color: #D3D3D3;
+  border: 4px black;
+  border-radius: 8px;
+  z-index: 15;
+  padding:20px;
+  width:450px;
+  height:200px;
+}
+
+.dg-title{
+  font-size:15px;
+  margin-bottom:30px;
+}
+
+.dg-content{
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.dg-content-footer{
+
+}
+.db-btn-cancel{
+  margin-right: 30px;
+}
+
+
+
+//日記~~ランキング//
 .link-wrapper{
   display:flex;
   .write-dairy{
@@ -575,13 +795,20 @@ input {
       p{
         background-color: #009999;
         border-radius: 5px;
-        opacity: 0.87;
+        opacity: 0.95;
+
+
         .link{
           color: white;
+          display: inline-block;
+          box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+          transition: all 0.3s ease 0s;
 
         }:hover{
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+          transform: translateY(-0.1875em);
           text-decoration: none;
-          font-size:18px;
+
         }
 
 
@@ -609,13 +836,19 @@ input {
        p{
          background-color: #009999;
          border-radius: 5px;
-         opacity: 0.87;
+         opacity: 0.95;
+
          .link{
            color: white;
+           display: inline-block;
+           box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+           transition: all 0.3s ease 0s;
 
          }:hover{
            text-decoration: none;
-           font-size:18px;
+           box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+           transform: translateY(-0.1875em);
+
          }
 
 
@@ -644,16 +877,16 @@ input {
        p{
          background-color: #009999;
          border-radius: 5px;
-         opacity: 0.87;
+         opacity: 0.95;
          margin-bottom:10px;
          .link{
            color: white;
            padding:5px;
 
-
          }:hover{
            text-decoration: none;
-           font-size:18px;
+           box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+           transform: translateY(-0.1875em)
          }
 
 
@@ -739,7 +972,7 @@ input {
     &:hover {
       text-decoration: none;
       color: #009999;
-      font-size: 18px;
+      //怪しい//
     }
   }
   strong {

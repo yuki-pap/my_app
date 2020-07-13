@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_012234) do
+ActiveRecord::Schema.define(version: 2020_07_07_081358) do
+
+  create_table "graphs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "color", default: "white"
+    t.boolean "fill", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_graphs_on_user_id"
+  end
 
   create_table "markers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color"
@@ -31,17 +40,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_012234) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "month"], name: "index_months_on_user_id_and_month", unique: true
     t.index ["user_id"], name: "index_months_on_user_id"
-  end
-
-  create_table "panels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "color"
-    t.boolean "switch"
-    t.integer "number"
-    t.bigint "study_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["number"], name: "index_panels_on_number", unique: true
-    t.index ["study_id"], name: "index_panels_on_study_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -81,11 +79,12 @@ ActiveRecord::Schema.define(version: 2020_07_06_012234) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.text "description"
+    t.integer "num_graph"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "graphs", "users"
   add_foreign_key "markers", "users"
   add_foreign_key "months", "users"
-  add_foreign_key "panels", "studies"
   add_foreign_key "studies", "users"
 end
