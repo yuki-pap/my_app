@@ -2,22 +2,22 @@
   <div>
     <div class="color-select">
       <form>
-        <label for="red" class="red">{{ colors['red'] }}</label>
+        <label for="red" class="red" >{{ colors['red'] }}</label>
         <input type="radio" id="red" value="red" v-model="color">
 
-        <label for="yellow" class="yellow">{{ colors['yellow'] }}</label>
+        <label for="yellow" class="yellow" >{{ colors['yellow'] }}</label>
         <input type="radio" id="yellow" value="yellow" v-model="color">
 
-        <label for="blue" class="blue">{{ colors['blue'] }}</label>
+        <label for="blue" class="blue" >{{ colors['blue'] }}</label>
         <input type="radio" id="blue" value="blue" v-model="color">
 
         <label for="light-blue" class="light-blue">{{ colors['lightBlue'] }}</label>
         <input type="radio" id="light-blue" value="light-blue" v-model="color">
 
-        <label for="green" class="green">{{ colors['green'] }}</label>
+        <label for="green" class="green" >{{ colors['green'] }}</label>
         <input type="radio" id="green" value="green" v-model="color">
 
-        <label for="yellow-green" class="yellow-green">{{ colors['yellowGreen'] }}</label>
+        <label for="yellow-green" class="yellow-green" >{{ colors['yellowGreen'] }}</label>
         <input type="radio" id="yellow-reen" value="yellow-green" v-model="color">
 
         <label for="white" class="white">その他</label>

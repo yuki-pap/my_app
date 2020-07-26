@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :months, dependent: :destroy
   has_many :markers, dependent: :destroy
   has_many :graphs, dependent: :destroy
+  has_many :histories, dependent: :destroy
   has_many :active_relationships,class_name: "Relationship",
                     foreign_key:"follower_id",
                     dependent: :destroy

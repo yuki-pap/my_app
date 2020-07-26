@@ -26,11 +26,12 @@ Rails.application.routes.draw do
 
   get 'ranks/month'
 
-
+  resources :analyses, only: [:index]
 
   resources :users
 
   resources :studies
+
 
   resources :account_activations, only: [:edit]
 
@@ -46,6 +47,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
+
+
   resources :users do
     member do
       get :following, :followers
@@ -56,6 +59,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :graphs, only: [:index, :create]
       get 'graphs/color'
+      resources :histories, only: [:index, :create]
+      get 'charts/day'
+      get 'charts/month'
+      resources :tasks
     end
   end
 

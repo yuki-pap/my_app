@@ -7,7 +7,7 @@ class Study < ApplicationRecord
   validates :count, presence: true
   validates :content_today,length: {maximum:140}
   after_initialize :set_default, if: :new_record?
-
+  has_many :tasks, dependent: :destroy
 
   def count_time
     num = self.count

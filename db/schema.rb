@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_081358) do
+ActiveRecord::Schema.define(version: 2020_07_21_112609) do
 
   create_table "graphs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color", default: "white"
@@ -18,7 +18,21 @@ ActiveRecord::Schema.define(version: 2020_07_07_081358) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
+    t.string "field"
+    t.index ["number"], name: "index_graphs_on_number"
     t.index ["user_id"], name: "index_graphs_on_user_id"
+  end
+
+  create_table "histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "image_data"
+    t.integer "number"
+    t.integer "percent"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["number"], name: "index_histories_on_number", unique: true
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "markers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -27,8 +41,9 @@ ActiveRecord::Schema.define(version: 2020_07_07_081358) do
     t.string "field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["color"], name: "index_markers_on_color", unique: true
-    t.index ["field"], name: "index_markers_on_field", unique: true
+    t.integer "number"
+    t.index ["color"], name: "index_markers_on_color"
+    t.index ["field"], name: "index_markers_on_field"
     t.index ["user_id"], name: "index_markers_on_user_id"
   end
 
@@ -59,10 +74,18 @@ ActiveRecord::Schema.define(version: 2020_07_07_081358) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content_today"
-    t.text "content_plan"
     t.boolean "value", default: false, null: false
     t.index ["user_id", "date"], name: "index_studies_on_user_id_and_date", unique: true
     t.index ["user_id"], name: "index_studies_on_user_id"
+  end
+
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.boolean "complete", default: false
+    t.bigint "study_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["study_id"], name: "index_tasks_on_study_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,7 +107,9 @@ ActiveRecord::Schema.define(version: 2020_07_07_081358) do
   end
 
   add_foreign_key "graphs", "users"
+  add_foreign_key "histories", "users"
   add_foreign_key "markers", "users"
   add_foreign_key "months", "users"
   add_foreign_key "studies", "users"
+  add_foreign_key "tasks", "studies"
 end

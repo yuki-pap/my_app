@@ -13,6 +13,7 @@ User.create!(name:  "Example User",
              activated: true,
              activated_at: Time.zone.now)
 
+
 99.times do |n|
     name  = Faker::Name.name
     password = "password"
@@ -38,7 +39,7 @@ User.create!(name:  "Example User",
                   activated_at: Time.zone.now)
   end
 
-
+  
 
 
   User.all.each do |user|

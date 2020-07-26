@@ -31,6 +31,7 @@ import Vue from 'vue/dist/vue.esm';
 import Router from './router/router';
 import Graph from './components/graph.vue';
 import Color from './components/color.vue';
+import Task from './components/task.vue';
 import VuejsDialog from 'vuejs-dialog';
 import VuejsDialogMixin from 'vuejs-dialog/dist/vuejs-dialog-mixin.min.js';
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
@@ -53,6 +54,7 @@ var app = new Vue({
       components:{
         'navbar': Graph,
         'color': Color,
+        'tasks': Task,
 
       }
 

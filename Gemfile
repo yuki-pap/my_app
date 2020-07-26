@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 
 gem 'bcrypt'
 
+gem 'screencap'
+
 gem 'mysql2'
 
 # Use Puma as the app server
@@ -46,11 +48,22 @@ gem 'bootsnap', require: false
 
 gem 'will_paginate', '3.1.7'
 
+gem 'shrine'
+
+gem 'image_processing'
+gem 'mini_magick'
+
+gem 'data-confirm-modal'
+
+#gem 'rspec_junit_formatter' # for circle ci
+
 
 
 gem 'whenever', :require => false
 
 gem 'bootstrap-will_paginate','1.0.0'
+
+gem 'chart-js-rails'
 
 
 # Use Redis adapter to run Action Cable in production
@@ -84,6 +97,7 @@ end
 
 group :production, :staging do
     gem 'unicorn'
+    gem 'fog'
 end
 
 group :test do
