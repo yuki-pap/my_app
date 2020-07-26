@@ -4,10 +4,15 @@
   "dependencies": {
     "@rails/webpacker": "5.1.1",
     "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
+    "html2canvas": "^1.0.0-rc.5",
     "rails-ujs": "^5.2.4-3",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.0",
     "vue-loader": "^15.9.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-router": "^3.3.4",
+    "vue-template-compiler": "^2.6.11",
+    "vuejs-dialog": "^1.4.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"

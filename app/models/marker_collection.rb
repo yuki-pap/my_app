@@ -14,16 +14,17 @@ class MarkerCollection
           Marker.new(
               color: value['color'],
               field: value['field'],
+              number: value['number'],
               user_id: value['user_id']
             )
           end
         else
-          self.collection = [ Marker.new(color:"Red"),
-                              Marker.new(color:"Yellow"),
-                              Marker.new(color:"Blue"),
-                              Marker.new(color:"Light-Blue"),
-                              Marker.new(color:"Green"),
-                              Marker.new(color:"Yellow-green") ]
+          self.collection = [ Marker.new(color:"Red",number:1),
+                              Marker.new(color:"Yellow",number:2),
+                              Marker.new(color:"Blue",number:3),
+                              Marker.new(color:"Light-Blue",number:4),
+                              Marker.new(color:"Green",number:5),
+                              Marker.new(color:"Yellow-green",number:6) ]
 
         end
     end

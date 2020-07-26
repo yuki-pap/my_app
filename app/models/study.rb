@@ -1,13 +1,13 @@
 class Study < ApplicationRecord
   belongs_to :user
-  has_many :panels, dependent: :destroy
+
   validates :user_id,presence: true, uniqueness: {scope: :date}
   validates :date,presence: true
   validates :count, numericality: { only_integer: true, greater_than:-1,less_than:97}
   validates :count, presence: true
   validates :content_today,length: {maximum:140}
   after_initialize :set_default, if: :new_record?
-
+  has_many :tasks, dependent: :destroy
 
   def count_time
     num = self.count

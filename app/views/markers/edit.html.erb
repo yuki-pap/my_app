@@ -20,10 +20,12 @@
         <% end %>
     <% end %>
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary",  data: {confirm: "マーカーを変更してもよろしいですか",
+      cancel: 'やめる', commit: '変更する'} ,title: '確認' %>
+   </div>
+
+
+
 <% end %>
 </div>
-
-<%= @markers.collection %>

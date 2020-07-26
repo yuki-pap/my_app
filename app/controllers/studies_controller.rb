@@ -1,9 +1,13 @@
 class StudiesController < ApplicationController
 
   before_action :logged_in_user, only: [:create,:show,:new,:update]
+  before_action :create_graph, only:[:show]
+  before_action :create_marker, only:[:show]
   protect_from_forgery except: [:create, :update]
-
+#selectなどを使ってパフォーマンス上げる
   def show
+
+    #グラフの作成
     unless current_user.months.find_by(month: Time.current.strftime("%Y年%m月"))
       month_sum = 0
         current_user.studies.each do |study|
@@ -16,9 +20,11 @@ class StudiesController < ApplicationController
                                  time_count: month_sum)
       @study = current_user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
 
+
+
     end
 
-
+    #画像保存
 
     @study = current_user.studies.find(params[:id])
 
@@ -29,6 +35,8 @@ class StudiesController < ApplicationController
     @studies.each do |f|
       @count_all += f.count
     end
+
+
 
 
     case (@count_all * 15) % 60
@@ -67,6 +75,8 @@ class StudiesController < ApplicationController
     end
 
 
+
+
   end
 
   def new
@@ -94,7 +104,7 @@ class StudiesController < ApplicationController
 
       @month.update_attributes(time_count: n)
 
-      render 'show', formats:'json'
+      redirect_to @study
 
    else
      redirect_to @study
@@ -128,5 +138,28 @@ class StudiesController < ApplicationController
   end
 
   private
+
+  def create_graph
+    unless current_user.graphs.exists?
+      (1..200).to_a.each do |f|
+        current_user.graphs.create(number: f)
+      end
+    end
+  end
+
+  def create_marker
+    unless current_user.markers.exists?
+       current_user.markers.create(color:"Red",number:1,field:"未登録")
+       current_user.markers.create(color:"Yellow",number:2,field:"未登録")
+       current_user.markers.create(color:"Blue",number:3,field:"未登録")
+       current_user.markers.create(color:"Light-Blue",number:4,field:"未登録")
+       current_user.markers.create(color:"Green",number:5,field:"未登録")
+       current_user.markers.create(color:"Yellow-green",number:6,field:"未登録")
+    end
+  end
+
+
+
+
 
 end
