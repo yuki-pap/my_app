@@ -1,5 +1,5 @@
 
-FROM ruby:2.6.0
+FROM ruby:2.6.6
 
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
