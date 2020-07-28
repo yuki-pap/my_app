@@ -9,7 +9,7 @@
 
 server '54.95.233.114',
  user: 'iizuka',
- roles: %w{app db web},
+ roles: %w{app web db},
 
 #set :ssh_options, keys: '~/.ssh/mykey3.pem'
 
