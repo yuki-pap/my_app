@@ -30,7 +30,7 @@
 docker-compose.yml
 
 ./env
-
+/.ssh/mykey3.pem
 /public/packs
 /public/packs-test
 /node_modules

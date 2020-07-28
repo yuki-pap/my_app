@@ -87,6 +87,9 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -101,7 +104,7 @@ end
 
 group :production, :staging do
     gem 'unicorn'
-    gem 'fog'
+    gem 'fog-aws'
 end
 
 
