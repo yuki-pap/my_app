@@ -3,7 +3,7 @@
 
   $timeout = 30
 
-  $app_dir = "/var/www/mumu/current"
+  $app_dir = "/var/www/rails/my_app/current"
 
   $listen  = File.expand_path 'tmp/sockets/.unicorn.sock', $app_dir
 
