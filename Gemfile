@@ -55,7 +55,7 @@ gem 'mini_magick'
 
 gem 'data-confirm-modal'
 
-#gem 'rspec_junit_formatter' # for circle ci
+gem 'rspec_junit_formatter' # for circle ci
 
 
 
@@ -107,6 +107,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   gem 'devise'
+
+  gem 'database_cleaner'
 
   gem "shoulda-matchers"
 end

@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 describe "User pages", type: :request do
-  #Studiesをもつユーザーの作成
- FactoryBot.create(:login_user_with_studies).studies
- #other_userの作成と、上記で作成したuser,studyを参照するためのlet
- let!(:other_user){FactoryBot.create(:user)}
- let!(:study){User.find_by(email: "test@example.com").studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))}
- let!(:user){User.find_by(email: "test@example.com")}
+  before do
+    #Studiesをもつユーザーの作成
+    FactoryBot.create(:login_user_with_studies).studies
+
+  end
+  #other_userの作成と、上記で作成したuser,studyを参照するためのlet
+  let(:other_user){FactoryBot.create(:user)}
+  let(:study){User.find_by(email: "test@example.com").studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))}
+  let(:user){User.find_by(email: "test@example.com")}
 
  #newアクションの機能テスト
     describe "GET #new" do
