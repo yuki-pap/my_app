@@ -9,7 +9,7 @@
 
 server '54.95.233.114',
  user: 'iizuka',
- roles: %w{app db web},
+ roles: %w{app web},
 
 #set :ssh_options, keys: '~/.ssh/mykey3.pem'
 
@@ -26,6 +26,9 @@ ssh_options: {
                 #     auth_methods: %w(publickey password)
                 #     # password: "please use keys"
                    }
+
+server 'myapp-db.cnjdlj8l93vc.ap-northeast-1.rds.amazonaws.com',
+  roles: %w{db}
 
 # role-based syntax
 # ==================
