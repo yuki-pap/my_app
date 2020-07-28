@@ -1,6 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 
-require '../lib/capistrano/tasks/unicorn.rb'
+#require '../lib/capistrano/tasks/unicorn.rb'
 
 lock "~> 3.14.1"
 
@@ -64,6 +64,8 @@ namespace :deploy do
     end
   end
 end
+
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

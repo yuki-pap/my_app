@@ -7,9 +7,25 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '54.95.233.114', user: 'iizuka', roles: %w{app db web}
+server '54.95.233.114',
+ user: 'iizuka',
+ roles: %w{app db web},
 
-set :ssh_options, keys: '~/.ssh/mykey3_rsa'
+#set :ssh_options, keys: '~/.ssh/mykey3.pem'
+
+#set :ssh_options, {  auth_methods: ['publickey'],
+        #          keys: ['~/.ssh/mykey3_rsa'],
+        #          forward_agent: true
+        #        }
+
+ssh_options: {
+
+                # overrides user setting above
+               keys: %w(~/.ssh/mykey3_rsa),
+               forward_agent: true
+                #     auth_methods: %w(publickey password)
+                #     # password: "please use keys"
+                   }
 
 # role-based syntax
 # ==================
