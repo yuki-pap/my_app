@@ -55,7 +55,7 @@ gem 'mini_magick'
 
 gem 'data-confirm-modal'
 
-#gem 'rspec_junit_formatter' # for circle ci
+gem 'rspec_junit_formatter' # for circle ci
 
 
 
@@ -83,6 +83,10 @@ gem 'chart-js-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -100,6 +104,7 @@ group :production, :staging do
     gem 'fog'
 end
 
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
@@ -107,6 +112,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   gem 'devise'
+
+  gem 'database_cleaner'
 
   gem "shoulda-matchers"
 end

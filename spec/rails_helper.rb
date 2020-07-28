@@ -9,6 +9,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'database_cleaner'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -54,7 +55,17 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+  end
 
+  config.before(:each) do
+      DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+      DatabaseCleaner.clean
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

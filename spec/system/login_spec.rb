@@ -4,7 +4,7 @@ describe "Login", type: :system do
 
   before do
 
-    #FactoryBot.create(:login_user_with_studies).studies
+    FactoryBot.create(:login_user_with_studies).studies
     @user = User.find_by(email: "test@example.com")
     visit login_path
   end
