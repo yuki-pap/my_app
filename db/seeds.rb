@@ -39,7 +39,7 @@ User.create!(name:  "Example User",
                   activated_at: Time.zone.now)
   end
 
-  
+
 
 
   User.all.each do |user|
@@ -47,7 +47,6 @@ User.create!(name:  "Example User",
       count: rand(70),
       date: Time.current.strftime("%Y年%m月%d日"),
       content_today: "今日は頑張った！",
-      content_plan: "過去問2年分、地理復習",
       created_at: Time.current
     )
   end
@@ -60,7 +59,6 @@ User.all.each do |user|
     date: Time.current.yesterday.strftime("%Y年%m月%d日"),
     content_today: "今日は頑張った！",
     created_at: Time.current.yesterday,
-    content_plan: "英単語100語、数学１０問、社会100ページ"
   )
 end
 
@@ -69,7 +67,6 @@ User.all.each do |user|
     count: 5,
     date: Time.current.ago(2.days).strftime("%Y年%m月%d日"),
     content_today: "今日は集中できた！",
-    content_plan: "英単語100語、数学１０問、社会100ページ",
     created_at: Time.current.ago(2.days)
   )
 end
