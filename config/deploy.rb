@@ -65,6 +65,11 @@ namespace :deploy do
   end
 end
 
+set :default_env, {
+  rbenv_root: "/home/iizuka/.rbenv",
+  path: "/home/iizuka/.rbenv/bin:$PATH",
+  
+}
 
 
 # Default branch is :master
