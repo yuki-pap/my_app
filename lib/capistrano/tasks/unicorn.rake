@@ -41,7 +41,7 @@ namespace :unicorn do
     end
   end
 
-#既にunicornが起動している場合再起動を、まだの場合起動を行うtask
+
   desc "Restart unicorn server gracefully"
   task restart: :environment do
     on roles(:app) do
@@ -60,4 +60,5 @@ namespace :unicorn do
       force_stop_unicorn
     end
   end
+  
 end
