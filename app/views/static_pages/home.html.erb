@@ -3,8 +3,9 @@
 
     <h1>さあ、みんなと一緒に勉強しよう！</h1>
 
-    <img src="<%= asset_path "study.jpg" %>" />
 
+    <%= image_tag asset_path("study.jpg") %>
+    <%= image_tag @url %>
 
     <% unless logged_in? %>
       <%= link_to "新規登録して利用する", signup_path, class: "btn btn-lg btn-primary signup" %>
