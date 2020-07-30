@@ -3,7 +3,10 @@ class StaticPagesController < ApplicationController
 
     @view = "home"
 
-  
+    @history = current_user.histories.find_by(number: 1)
+
+    @url = @history.image[:medium].url
+
 
 
 
