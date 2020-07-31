@@ -46,7 +46,9 @@ namespace :unicorn do
   task restart: :environment do
     on roles(:app) do
       if test("[ -f #{fetch(:unicorn_pid)} ]")
-        reload_unicorn
+        stop_unicorn
+
+        start_unicorn
       else
         start_unicorn
       end
@@ -60,5 +62,5 @@ namespace :unicorn do
       force_stop_unicorn
     end
   end
-  
+
 end
