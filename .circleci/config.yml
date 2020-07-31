@@ -38,7 +38,8 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - add_ssh_keys:
           fingerprints:
-            - "	0b:59:d0:f4:a4:09:86:f3:60:1f:3c:08:5a:fa:02:86"
+            - "0c:d7:88:f8:d1:91:c0:ee:3d:f9:2e:2e:0a:3e:b2:c0"
+
 
 
 
