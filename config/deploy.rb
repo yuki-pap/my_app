@@ -26,7 +26,8 @@ set :keep_releases, 3
 set :ssh_options, {
   keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],
   forward_agent: true,
-  auth_methods: %w[publickey]
+  auth_methods: %w[publickey],
+  port: 22
 }
 
 
