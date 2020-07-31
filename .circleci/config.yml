@@ -36,6 +36,10 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - add_ssh_keys:
+          fingerprints:
+            - "	0b:59:d0:f4:a4:09:86:f3:60:1f:3c:08:5a:fa:02:86"
+
 
 
       - run: mv config/database.yml.ci config/database.yml

@@ -129,6 +129,8 @@ header{
     position: absolute;
       top:127%;
       left:43%;
+    transition: all 0.3s ease 0s;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
   }
 
   .signup:hover{
@@ -139,7 +141,8 @@ header{
     font-size:25px;
   }
   .benkyo:hover{
-    font-size:25px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.1875em);
   }
   img{
 
@@ -450,8 +453,6 @@ input {
       }
     }
     .study-times{
-
-
         p{
           margin-top: 10px;
           display: block;
@@ -548,6 +549,36 @@ input {
 }
 
 //study/show*/
+.side-menus{
+  display: none;
+  position:absolute;
+    top:400px;
+    left:30px;
+  padding:10px;
+}
+.mini-menu-title{
+  font-size:22px;
+}
+.side-menu{
+  display: flex;
+
+  //border-bottom: 1px solid;//
+  margin-bottom: 30px;
+  width:170px;
+  .side-icon{
+    margin-left: 10px;
+    width:21px;
+    height: 21px;
+    margin-right: 10px;
+  }
+  .link{
+    color:black;
+    font-size:14px;
+  }
+  .link:hover{
+    text-decoration: none;
+  }
+}
 .graph-fill{
   margin-left: 100px;
   color:red;

@@ -80,4 +80,18 @@ class Api::V1::HistoriesController < ApiController
 
   end
 
+  def count_conversion(n)
+    case (n) % 4
+    when 0
+     "#{(n * 15) / 60}時間"
+    when 1
+       "#{(n * 15) / 60}時間15分"
+    when 2
+      "#{(n * 15) / 60}時間30分"
+    else 3
+      "#{(n * 15) / 60}時間45分"
+
+    end
+  end
+
 end
