@@ -23,6 +23,13 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :keep_releases, 3
 
+set :ssh_options, {
+  keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],
+  forward_agent: true,
+  auth_methods: %w[publickey],
+  port: 33333,
+}  
+
 
 set :rbenv_ruby, '2.6.6'
 
@@ -68,7 +75,7 @@ end
 set :default_env, {
   rbenv_root: "/home/iizuka/.rbenv",
   path: "/home/iizuka/.rbenv/bin:$PATH",
-  
+
 }
 
 
