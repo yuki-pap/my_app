@@ -21,7 +21,7 @@ server '54.95.233.114',
 ssh_options: {
 
                 # overrides user setting above
-               keys: %w(~/.ssh/id_54.95.233.114_0cd788f8d191c0ee3df92e2e0a3eb2c0),
+               keys: %w(~/.ssh/id_rsa_0cd788f8d191c0ee3df92e2e0a3eb2c0),
                forward_agent: true
                 #     auth_methods: %w(publickey password)
                 #     # password: "please use keys"
