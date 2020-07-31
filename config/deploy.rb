@@ -24,7 +24,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :keep_releases, 3
 
 set :ssh_options, {
-  keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],
+  keys: '~/.ssh/mykey3_rsa_0cd788f8d191c0ee3df92e2e0a3eb2c0',
   forward_agent: true,
   auth_methods: %w[publickey],
   port: 22
