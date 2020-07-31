@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="color-select">
+      <p class="color-form-title">ペンの色を選択</p>
       <form>
         <label for="red" class="red" >{{ colors['red'] }}</label>
         <input type="radio" id="red" value="red" v-model="color">

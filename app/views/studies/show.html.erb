@@ -9,7 +9,34 @@
  </div>
 
 
+<div class="side-menus">
+  <p class="mini-menu-title">Mini-menu</p>
+  <div class="side-menu">
+    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= link_to "マーカーの編集", edit_marker_path(1), class: "link" %>
+  </div>
 
+  <div class="side-menu">
+    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= link_to '日記を書く', edit_diary_path(@study),class:"link" %>
+  </div>
+
+
+  <div class="side-menu">
+    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= link_to 'ランキング', ranks_today_path,class:"link" %>
+  </div>
+
+
+  <div class="side-menu">
+    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= link_to 'アナリティクス', analyses_path,class:"link" %>
+  </div>
+  <div class="side-menu">
+    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= link_to '使い方', about_path,class:"link" %>
+  </div>
+</div>
 
 
 

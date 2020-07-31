@@ -11,6 +11,11 @@
 
   $std_log = File.expand_path 'log/unicorn.log', $app_dir
 
+
+  before_exec do |server|
+    ENV['BUNDLE_GEMFILE'] = File.expand_path('Gemfile', $app_dir)
+  end
+
   worker_processes  $worker
   working_directory $app_dir
   stderr_path $std_log
