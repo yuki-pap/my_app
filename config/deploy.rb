@@ -26,9 +26,8 @@ set :keep_releases, 3
 set :ssh_options, {
   keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"],
   forward_agent: true,
-  auth_methods: %w[publickey],
-  port: 33333,
-}  
+  auth_methods: %w[publickey]
+}
 
 
 set :rbenv_ruby, '2.6.6'
