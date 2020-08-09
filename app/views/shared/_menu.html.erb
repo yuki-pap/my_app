@@ -1,0 +1,32 @@
+
+<div class="side-menus-user">
+
+<div class="side-menu <%="active-menu" if menu == 1 %>">
+  <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+  <%= link_to "プロフィール", current_user ,class: "link" %>
+</div>
+
+<div class="side-menu <%="active-menu" if menu == 2 %>">
+  <%= image_tag asset_path('search.png'),class: "side-icon" %>
+  <%= link_to "ユーザー検索",users_path ,class: "link"%>
+</div>
+
+
+<div class="side-menu <%="active-menu" if menu == 3 %>">
+  <%= image_tag asset_path('rank2.png'),class: "side-icon" %>
+  <%= link_to 'ランキング', ranks_today_path ,class:"link" %>
+</div>
+<div class="side-menu <%="active-menu" if menu == 4 %>">
+  <%= image_tag asset_path('pen_mark.png'), class: "side-icon" %>
+  <%= link_to "タイムライン", users_feed_path ,class: "link"%>
+</div>
+
+<div class="side-menu <%="active-menu" if menu == 5 %>">
+  <%= image_tag asset_path('pen_mark.png'), class: "side-icon" %>
+  <%= link_to "ユーザー情報編集", edit_user_path(current_user) ,class: "link"%>
+</div>
+<div class="side-menu">
+  <%= image_tag asset_path('door.png'),class: "side-icon" %>
+  <%= link_to "ログアウト", logout_path, method: :delete ,class: "link"%>
+</div>
+</div>

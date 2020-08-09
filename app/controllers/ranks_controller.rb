@@ -1,6 +1,8 @@
 class RanksController < ApplicationController
   def today
+    @menu_number = 3
     @all_ranks = User.find(Study.where(date: Time.current.strftime("%Y年%m月%d日")).order(count: :desc).limit(10).pluck(:user_id))
+    @all_ranks_month = User.find(Month.where(month: Time.current.strftime("%Y年%m月")).order(time_count: :desc).limit(30).pluck(:user_id))
   end
 
 
@@ -11,7 +13,7 @@ class RanksController < ApplicationController
 
   end
 
-  
+
 
 
 end

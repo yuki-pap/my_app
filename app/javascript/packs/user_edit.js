@@ -17,8 +17,4 @@ var app = new Vue({
 
 
 
-
-
-
-
 });

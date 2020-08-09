@@ -9,7 +9,9 @@ Capybara.register_driver :chrome_headless do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.javascript_driver = :chrome_headless
+#Capybara.javascript_driver = :selenium_chrome_headless
+
+#Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
@@ -23,6 +25,8 @@ RSpec.configure do |config|
         url: ENV.fetch("SELENIUM_DRIVER_URL"),
         desired_capabilities: :chrome
       }
+      Capybara.server_host = 'app'
+      Capybara.app_host='http://app'
     else
       driven_by :selenium_chrome_headless
     end

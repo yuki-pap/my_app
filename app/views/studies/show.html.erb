@@ -3,39 +3,38 @@
  <p class="study-day"><%= @study.date %></p>
 
 
+
  <div id="hello">
    <color></color>
    <tasks></tasks>
- </div>
 
-<p>成功</p>
-<div class="side-menus">
+
+<div v-on:click="change()"><%= image_tag asset_path('mini-menu.png'),class: "menu-image" %></div>
+<div v-if="show === false"><div class="please-click"><p class="icon">&#8601;</p> <p> Click!</p></div></div>
+<div v-if="show === true" class="side-menus" >
   <p class="mini-menu-title">Mini-menu</p>
+  <div  v-on:click="change()"><%= image_tag asset_path('batujirushi.png'),class: "cross-mark" %></div>
   <div class="side-menu">
-    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= image_tag asset_path('pencil.png'),class: "side-icon" %>
     <%= link_to "マーカーの編集", edit_marker_path(1), class: "link" %>
   </div>
 
   <div class="side-menu">
-    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= image_tag asset_path('book_diary.png'),class: "side-icon" %>
     <%= link_to '日記を書く', edit_diary_path(@study),class:"link" %>
   </div>
 
 
   <div class="side-menu">
-    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
-    <%= link_to 'ランキング', ranks_today_path,class:"link" %>
-  </div>
-
-
-  <div class="side-menu">
-    <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+    <%= image_tag asset_path('graph_oresen.png'),class: "side-icon" %>
     <%= link_to 'アナリティクス', analyses_path,class:"link" %>
   </div>
   <div class="side-menu">
     <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
     <%= link_to '使い方', about_path,class:"link" %>
   </div>
+</div>
+
 </div>
 
 
@@ -55,14 +54,14 @@
 
     <div class="rank-link">
       <div class="links">
-        <p><%= link_to '・今日のランキングへ', ranks_today_path,class:"link" %></p>
-        <p><%= link_to '・今月のランキングへ', ranks_month_path,class:"link" %></p>
+        <p><%= link_to '・ランキングを見る', ranks_today_path,class:"link" %></p>
+
       </div>
 
     </div>
     <div class="nurie-link">
       <div class="links">
-        <p><%= link_to '・今までの塗り絵を見る', analyses_path,class:"link" %></p>
+        <p><%= link_to '・アナリティクスを見る', analyses_path,class:"link" %></p>
 
       </div>
 
@@ -75,7 +74,7 @@
 <p>・過去の勉強履歴</p>
 <div class="paginate-wrapper" %>
 
-
+ <div class="study">
   <ul class="users">
     <% @studies.each do |study|%>
       <% unless study.date == Time.current.strftime("%Y年%m月%d日")  %>
@@ -84,6 +83,7 @@
       <% end %>
     <% end %>
   </ul>
+ </div>
 
     <%= will_paginate %>
 </div>

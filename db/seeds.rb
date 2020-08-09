@@ -52,6 +52,32 @@ User.create!(name:  "Example User",
   end
 
 
+    User.all.each do |user|
+      user.time_by_fields.create!(
+        color: "red",
+        field: "数学",
+        count: 10,
+        created_at: Time.current
+      )
+    end
+
+    User.all.each do |user|
+      user.time_by_fields.create!(
+        color: "yellow",
+        field: "国語",
+        count: 10,
+        created_at: Time.current
+      )
+    end
+
+
+    TimeByField.all.each do |f|
+      f.time_by_field_todays.create!(
+        count:10
+      )
+    end
+
+
 
 User.all.each do |user|
   user.studies.create!(

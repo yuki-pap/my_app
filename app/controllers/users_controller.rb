@@ -9,22 +9,32 @@ class UsersController < ApplicationController
   end
 
   def index
+    @menu_number = 2
     if params[:key]
-      @users = User.paginate(page:params[:page]).where('name LIKE ?', "%#{params[:key]}%" )
+      @users = User.paginate(page:params[:page],per_page: 20).where('name LIKE ?', "%#{params[:key]}%" )
     elsif params[:study_key]
 
-      @users = User.paginate(page:params[:page]).where('description LIKE ?', "%#{params[:study_key]}%" )
+      @users = User.paginate(page:params[:page],per_page: 20).where('description LIKE ?', "%#{params[:study_key]}%" )
 
     else
-      @users = User.paginate(page:params[:page])
+      @users = User.paginate(page:params[:page],per_page: 20)
     end
   end
 
   def show
+
+    @graph_num = User.find(params[:id]).histories.count
+    @menu_number = 1
     @user = User.find(params[:id])
     @study = @user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
+    @dairy_today = @study&.content_today
     @study_yesterday =  @user.studies.find_by(date: Time.current.yesterday.strftime("%Y年%m月%d日"))
     @count_all = 0
+    @time_by_fields = @user.time_by_fields
+    range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
+      @time_by_field_todays =  @time_by_fields.map do |f|
+            f.time_by_field_todays.find_by(created_at: range)
+      end
      @user.studies.each do |f|
       @count_all += f.count
     end
@@ -76,10 +86,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @menu_number = 5
     @user = User.find(params[:id])
   end
 
   def update
+
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile update"
@@ -96,6 +108,11 @@ class UsersController < ApplicationController
     redirect_to users_url
 
   end
+
+  def feed
+      @menu_number = 4
+  end
+
 
 
 
@@ -124,7 +141,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name,:email,:password,
-                        :password_confirmation)
+                        :password_confirmation,:description)
     end
 
 

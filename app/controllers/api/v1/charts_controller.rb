@@ -22,7 +22,7 @@ class Api::V1::ChartsController < ApiController
     months = current_user.months.first(12)
 
     months.each_with_index do |f,i|
-      month_hash[11 - i] = (f.time_count.to_f / 4).to_s
+      month_hash[12 - i] = (f.time_count.to_f / 4).to_s
     end
 
     (1..12).each do |i|

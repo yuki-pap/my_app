@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_112609) do
+ActiveRecord::Schema.define(version: 2020_08_01_083858) do
 
   create_table "graphs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "color", default: "white"
@@ -88,6 +88,25 @@ ActiveRecord::Schema.define(version: 2020_07_21_112609) do
     t.index ["study_id"], name: "index_tasks_on_study_id"
   end
 
+  create_table "time_by_field_todays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "count"
+    t.bigint "time_by_field_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["time_by_field_id"], name: "index_time_by_field_todays_on_time_by_field_id"
+  end
+
+  create_table "time_by_fields", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "color"
+    t.integer "count"
+    t.string "field"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["field"], name: "index_time_by_fields_on_field"
+    t.index ["user_id"], name: "index_time_by_fields_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -112,4 +131,6 @@ ActiveRecord::Schema.define(version: 2020_07_21_112609) do
   add_foreign_key "months", "users"
   add_foreign_key "studies", "users"
   add_foreign_key "tasks", "studies"
+  add_foreign_key "time_by_field_todays", "time_by_fields"
+  add_foreign_key "time_by_fields", "users"
 end
