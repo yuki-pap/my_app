@@ -21,7 +21,7 @@
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 
 ENV.each { |k,v| env k.to_sym, v}
-set :environment, :development
+set :environment, "production"
 
 set :path, "my_app"
 
