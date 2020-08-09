@@ -106,7 +106,8 @@ end
 group :production, :staging do
     gem 'unicorn'
     gem 'fog-aws'
-    gem 'listen'
+    gem 'listen', '>= 3.0.5', '< 3.2'
+
 end
 
 
