@@ -1,7 +1,51 @@
-
+<h2 class="analyses-title">アナリティクス</h2>
   <div id="histories">
-    <p class="canvas-tag">今までの塗り絵シート</p>
+
+    <div id="Menu">
+      <div class="menu" v-on:click="change(1)" v-bind:class="{'active': active === 1}"> <p class="aicon">&#9660;</p> <p class="con">学習分野別の勉強時間</p></div>
+      <div class="menu" v-on:click="change(2)" v-bind:class="{'active': active === 2}"> <p class="aicon">&#9660;</p> <p class="con" >今までの塗り絵シート</p></div>
+      <div class="menu" v-on:click="change(3)" v-bind:class="{'active': active === 3}"> <p class="aicon">&#9660;</p> <p class="con" >グラフ</p></div>
+      <div class="mini-menu">
+        <div v-if="show === false" v-on:click="changeShow()"><%= image_tag asset_path('mini-menu.png'),class: "menu-image" %><div class="please-click2"><p class="icon">&#8601;</p> <p> Click!</p></div></div>
+        <div v-if="show === true" class="side-menus" >
+          <p class="mini-menu-title">Mini-menu</p>
+          <div  v-on:click="changeShow()"><%= image_tag asset_path('batujirushi.png'),class: "cross-mark" %></div>
+          <div class="side-menu">
+            <%= image_tag asset_path('pencil.png'),class: "side-icon" %>
+            <%= link_to "マーカーの編集", edit_marker_path(1), class: "link" %>
+          </div>
+
+          <div class="side-menu">
+            <%= image_tag asset_path('book_diary.png'),class: "side-icon" %>
+            <%= link_to '日記を書く', edit_diary_path(@study),class:"link" %>
+          </div>
+
+
+          <div class="side-menu">
+            <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+            <%= link_to '学習に戻る', @study,class:"link" %>
+          </div>
+          <div class="side-menu">
+            <%= image_tag asset_path('pen_mark.png'),class: "side-icon" %>
+            <%= link_to '使い方', about_path,class:"link" %>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+    <div v-if="active === 1">
+      <p class="time-by-fields-title">学習分野別の勉強時間</p>
+      <time-by-fields></time-by-fields>
+    </div>
+    <div v-if="active === 2">
+    <p class="canvas-tag">  </p>
     <history></history>
+    </div>
+    <div v-if="active === 3">
     <chart></chart>
+    </div>
   </div>
+
 <%= javascript_pack_tag 'history_index.js' %>

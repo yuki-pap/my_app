@@ -3,7 +3,7 @@
     <div class="title-wrapper">
       <h1 class="tasks-title">To-do-List</h1>
       <div class="tasks-flash" v-if="message">
-        &#10004;  　　タスクを登録しました！
+        &#10004;   タスクを登録しました！
       </div>
     </div>
     <div class="tasks-wrapper" >
@@ -17,7 +17,7 @@
 <script>
 import axios from 'axios';
 var TaskForm = {
-　template: `<div class="tasks">
+ template: `<div class="tasks">
               <div class="cross"  v-confirm="openDialog(this.tasks[this.number]['id'])" ></div>
               <input v-on:change="TaskUpdate" type="text" class="task-form" v-model="this.content" type="text" style="width:200px;height:50px;">
               <div v-if="complete"><p class="complete">完了済み</p><p v-on:click="ChangeStarColor(id,false)" class="complete-star">★</p></div>

@@ -31,6 +31,7 @@ import Vue from 'vue/dist/vue.esm';
 import Router from './router/router';
 import Graph from './components/graph.vue';
 import Color from './components/color.vue';
+import Timer from './components/timer.vue'
 import Task from './components/task.vue';
 import VuejsDialog from 'vuejs-dialog';
 import VuejsDialogMixin from 'vuejs-dialog/dist/vuejs-dialog-mixin.min.js';
@@ -49,13 +50,23 @@ axios.defaults.headers.common = {
 var app = new Vue({
    router: Router,
     el: '#hello',
+    data:{
+      show: false,
+    },
 
 
       components:{
         'navbar': Graph,
         'color': Color,
         'tasks': Task,
+        'timer': Timer
 
+      },
+
+      methods: {
+        change: function() {
+          this.show = !(this.show)
+        }
       }
 
 

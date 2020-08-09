@@ -38,7 +38,24 @@ class Api::V1::GraphsController < ApiController
           @month.update_attributes(time_count: n)
           color = params[:graph][:color]
       unless color == "white"
-        if current_user.graphs.find_by(number:params[:graph][:id]).update_attributes(fill:true,color:color ,field:current_user.markers.find_by(color:color).field)
+        @field = current_user.markers.find_by(color:color).field
+        if current_user.graphs.find_by(number:params[:graph][:id]).update_attributes(fill:true,color:color ,field: @field)
+           #リファクタリング必須
+            unless @time_by_field = current_user.time_by_fields.find_by(field: @field)
+              @time_by_field = current_user.time_by_fields.create(field: @field, count: 0)
+            end
+            @count = @time_by_field.count + 1
+            @time_by_field.update_attributes(count: @count,color: color)
+
+            unless @time_by_field_today = @time_by_field.time_by_field_todays.find_by(created_at: range)
+              @time_by_field_today = @time_by_field.time_by_field_todays.create(count: 0)
+            end
+
+            @count = @time_by_field_today.count + 1
+
+            @time_by_field_today.update_attributes(count: @count)
+
+
             graph_hash = make_graph_hash
             render :json => graph_hash
         else
@@ -52,6 +69,21 @@ class Api::V1::GraphsController < ApiController
         end
       else
         if current_user.graphs.find_by(number:params[:graph][:id]).update_attributes(fill:true,color:color ,field:"その他")
+          field = "その他"
+          #リファクタリング必須
+          unless time_by_field = current_user.time_by_fields.find_by(field: field)
+            time_by_field  = current_user.time_by_fields.create(field: field,count:0)
+          end
+          count = time_by_field.count + 1
+          time_by_field.update_attributes(count: count,color: color)
+
+          unless time_by_field_today = time_by_field.time_by_field_todays.find_by(created_at: range)
+            time_by_field_today = time_by_field.time_by_field_todays.create(count:0)
+          end
+
+          count = time_by_field_today.count + 1
+
+          time_by_field_today.update_attributes(count: count)
             graph_hash = make_graph_hash
             render :json => graph_hash
         else
@@ -79,6 +111,21 @@ class Api::V1::GraphsController < ApiController
         @month.update_attributes(time_count: n)
 
         if current_user.graphs.find_by(number:params[:graph][:id]).update_attributes(fill:false,color:"white",field: nil)
+          color = params[:graph][:col]
+          field = current_user.markers.find_by(color:color).field
+          if @time_by_field = current_user.time_by_fields.find_by(field: field)
+            count = @time_by_field.count - 1
+            @time_by_field.update_attributes(count: count)
+          end
+
+
+          if @time_by_field_today = @time_by_field.time_by_field_todays.find_by(created_at: range)
+            count = @time_by_field_today.count - 1
+
+            @time_by_field_today.update_attributes(count: count)
+          end
+
+
           graph_hash = make_graph_hash
           render :json => graph_hash
         else
@@ -164,19 +211,9 @@ private
   end
 
 
-  def count_conversion(n)
-    case (n) % 4
-    when 0
-     "#{(n * 15) / 60}時間"
-    when 1
-       "#{(n * 15) / 60}時間15分"
-    when 2
-      "#{(n * 15) / 60}時間30分"
-    else 3
-      "#{(n * 15) / 60}時間45分"
 
-    end
-  end
+
+
 
 
 

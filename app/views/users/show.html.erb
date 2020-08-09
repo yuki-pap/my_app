@@ -1,69 +1,58 @@
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
 
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <section class="stats">
-        <% @user ||= current_user %>
-        <div class="stats">
-          <%= link_to "#{@user.following.count}follow",following_user_path(@user),class:"follow_link"%>
-
-          <%= link_to "#{@user.followers.count}follower",followers_user_path(@user),class:"follow_link"%>
+<div class="users-wrapper">
+  <%= render partial:'shared/menu',locals:{menu: @menu_number} %>
+    <div class="user-content">
 
 
+              <div class="profile">
+                <div><%= gravatar_for @user %></div>
+                <div class="name"><%= @user.name %></div>
+                <div class="sheet">塗り絵シート<%=@graph_num + 1%>枚目</div>
+              </div>
 
 
-        </div>
-      </section>
+                <% @user ||= User.find(params[:id]) %>
+                <div class="stats">
+                  <%= link_to "#{@user.following.count}follow",following_user_path(@user),class:"follow_link"%>
 
+                  <%= link_to "#{@user.followers.count}follower",followers_user_path(@user),class:"follow_link"%>
 
-    </section>
-  </aside>
-  <div class="profiles">
-    <p>学習分野</p>
-    <div class="profile">
-      <% if @user.description %>
-        <%= @user.description%>
-      <% else %>
-        <%= link_to "学習分野を入力してください",edit_user_path %>
-      <% end %>
+                </div>
+              <p class="description-title">自己紹介</p>
+              <div class="description">
+                <p><%=@user&.description%></p>
+              </div>
+            <div class="user-information">
+              <div class="dairys-wapper">
+                <div class="dairy-title">
+                  <%= image_tag asset_path('book_diary.png'), class: "side-icon" %>
+                  <p >本日の日記</p>
+                </div>
+
+                <div class="dairy-wrapper">
+                  <p class='dairy'><%= @dairy_today %></p>
+                  <div class="dairy-edit-link">
+                    <%= link_to '日記を書く', edit_diary_path(@study), class: 'link' %>
+                    <%= image_tag asset_path('fudepen.png'),class: "side-icon" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="study-time-by-field" id="times">
+                <p>本日の勉強時間</p>
+                <today id = <%= params[:id]%>></today>
+              </div>
+            </div>
+
     </div>
-  </div>
-</div>
-
-
-  <div class="study-times">
-    <p>本日の勉強時間</p>
-    <div class="box">
-      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study.count_time %></div>
-    </div>
-    <div class="study-times">
-      <p>今月の総勉強時間</p>
-      <div class="box">
-        <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time_month %></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="study-times">
-    <p>今までの総勉強時間</p>
-    <div class="box">
-      <p class="yajirushi">&#9758;</p> <div class="study-time"><%= @study_all_time %></div>
-    </div>
-  </div>
 
 </div>
 
+  <% if current_user.id == (params[:id]).to_i %>
+    <p>
+      <%= link_to '勉強を始める' , new_study_path, class: "head-link btn btn-lg btn-primary " %>
+    </p>
+  <% end %>
 
 
-
-<div>
-<% if current_user.id == (params[:id]).to_i %>
-  <p>
-    <%= link_to '勉強を始める' , new_study_path, class: "head-link btn btn-lg btn-primary " %>
-  </p>
-<% end %>
-</div>
+  <%= javascript_pack_tag 'time_by_field_index.js' %>

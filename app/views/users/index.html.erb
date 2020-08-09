@@ -1,15 +1,17 @@
-<% provide(:title, 'All users') %>
-<h1 class="index-title">ユーザー一覧</h1>
 
-<div class="form-wrapper">
-  <div class="form">
+<div class="users-wrapper">
+ <%= render partial:'shared/menu',locals:{menu: @menu_number} %>
+  <div class="user-index-content">
+
+  <div class="form-wrapper">
+    <div class="form">
     <%= form_with url: users_path, method: :get, local: true do |f| %>
       <%= f.label :key, 'ユーザー名',class: 'label' %>
       <%= f.text_field :key, class:'form-control' %>
       <%= f.submit '検索',class: 'index-serch'%>
 
     <% end %>
-  </div>
+    </div>
 
   <div class="form">
     <%= form_with url: users_path, method: :get, local: true do |f| %>
@@ -20,11 +22,11 @@
     <% end %>
 
   </div>
-</div>
+  </div>
 
-<div class="paginate-wrapper" >
-  <%= will_paginate %>
+      <div class="paginate-wrapper" >
 
+<div class="index">
   <ul class="users">
     <% @users.each do |user| %>
       <li>
@@ -34,5 +36,8 @@
       <% end %>
     </ul>
 
-    <%= will_paginate %>
+    <%= will_paginate @users %>
+      </div>
+  </div>
+</div>
 </div>

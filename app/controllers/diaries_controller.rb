@@ -8,7 +8,7 @@ class DiariesController < ApplicationController
 
     @study.update_attributes(dairy_params)
 
-    redirect_to @study
+    redirect_to current_user
   end
 
 

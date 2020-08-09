@@ -1,0 +1,9 @@
+<div class="users-wrapper">
+  <%= render partial:'shared/menu',locals:{menu: @menu_number} %>
+  <div id="feeds">
+    <feed></feed>
+  </div>
+</div>
+
+
+<%= javascript_pack_tag 'feed.js' %>

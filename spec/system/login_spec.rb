@@ -4,7 +4,7 @@ describe "Login", type: :system do
 
   before do
 
-    FactoryBot.create(:login_user_with_studies).studies
+    FactoryBot.create(:login_user_with_studies)
     @user = User.find_by(email: "test@example.com")
     visit login_path
   end
@@ -36,14 +36,14 @@ describe "Login", type: :system do
 
       expect(page).to have_current_path user_path(@user)
       expect(page).to_not have_link  'Link', href: login_path
-      click_link 'アカウント'
+
       expect(page).to have_link 'ログアウト',href: logout_path
 
 
     end
     it 'log_out' do
 
-      click_link 'アカウント'
+      
       click_link 'ログアウト'
       expect(page).to have_current_path root_path
       expect(page).to have_link 'ログイン', href: login_path

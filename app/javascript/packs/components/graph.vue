@@ -28,8 +28,6 @@
 
 
 
-
-
     <div class="nurie_table" id='html2canvas_img' ref="abc">
       <table ref="abc">
         <tr v-for="count in counts" >
@@ -43,9 +41,6 @@
     </div>
 
     <btn class="new-sheet"  v-confirm="dialog()" ref="sheet">シートを新しくする。&#8658;</btn>
-
-
-
 
 
   </div>
@@ -75,10 +70,6 @@
     canvasImage: "",
     count:0
 
-
-
-
-
    }
 
   },
@@ -100,15 +91,8 @@
       }
     }
 
-
-
-
   },
-
-
-
-
-  methods: {
+ methods: {
     openDialog: function(id){
 
         let self = this;
@@ -146,10 +130,6 @@
               }
             };
           }
-
-
-
-
         }
 
         else{
@@ -212,13 +192,6 @@
           dialog.close();
         }, 2);
 
-
-
-
-
-
-
-
     },
 
 
@@ -226,7 +199,7 @@
 
 
       await axios
-      .post('/api/v1/graphs.json', {graph:{id:id}})
+      .post('/api/v1/graphs.json', {graph:{id:id,col: this.graphs[id].color }})
       .then((response) => {
 
                 this.graphs = response.data;
@@ -236,19 +209,11 @@
       });
 
 
-
-
-
-
       setTimeout(function() {
         dialog.close();
       }, 2);
 
       this.reload();
-
-
-
-
 
    },
 
@@ -284,14 +249,9 @@
 
         });
 
-
-
-
    },
 
     updatePicture: async function(image,dialog){
-
-
        await axios
        .post('/api/v1/histories.json', {history:{picture: image}})
        .then((response) => {
@@ -302,30 +262,17 @@
          console.log(error);
        });
 
-
-
-
-
-
        setTimeout(function() {
          dialog.close();
        }, 2)
 
        this.reload();
 
-
-
     },
     scroll: function(){
-      window.scrollTo(0, 700);
+      window.scrollTo(0, 720);
       this.$refs.sheet.style.color = "red";
     }
-
-
-
-
-
-
 
   }
 

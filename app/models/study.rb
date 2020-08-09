@@ -39,7 +39,7 @@ class Study < ApplicationRecord
    end
 
 
-  private
+
 
 
 
