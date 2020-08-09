@@ -48,11 +48,7 @@
 
 </div>
 
-  <% if current_user.id == (params[:id]).to_i %>
-    <p>
-      <%= link_to '勉強を始める' , new_study_path, class: "head-link btn btn-lg btn-primary " %>
-    </p>
-  <% end %>
+
 
 
   <%= javascript_pack_tag 'time_by_field_index.js' %>
