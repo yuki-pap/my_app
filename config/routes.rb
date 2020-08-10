@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'ranks/month'
 
   resources :analyses, only: [:index]
+  
   get 'users/feed'
   resources :users
 
