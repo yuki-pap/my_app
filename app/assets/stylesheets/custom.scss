@@ -101,6 +101,7 @@ header{
     position:relative;
     height: 400px;
     text-align: center;
+    margin-bottom: 300px;
 
   h1{
     color: #009999;
@@ -109,18 +110,25 @@ header{
   }
   .signup{
     background-color: #009999;
-    opacity:0.9;
+    border-color: white;
+
+    transition: all 0.3s ease 0s;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    position: absolute;
     position: absolute;
       top:127%;
-      left:53%;
+      left:54%;
 
    }
   .login{
     background-color: #009999;
-    opacity:0.9;
+    border-color: white;
+
+    transition: all 0.3s ease 0s;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
     position: absolute;
       top:127%;
-      left:40%;
+      left:39%;
 
   }
   .benkyo{
@@ -134,11 +142,19 @@ header{
   }
 
   .signup:hover{
-    font-size:25px;
+    background-color: #009999;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.1875em);
+
+    border-color: white;
 
   }
   .login:hover{
-    font-size:25px;
+    background-color: #009999;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.1875em);
+
+    border-color: white;
   }
   .benkyo:hover{
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
@@ -147,6 +163,18 @@ header{
   img{
 
   }
+}
+
+
+/*about*/
+.about{
+  background-color:rgba(126,126,126,0.3);
+  border-radius: 10px;
+  padding:30px;
+}
+.sample-image{
+  width:400px;
+  height:250px;
 }
 
 /* typography */
@@ -332,6 +360,20 @@ input {
 #session_remember_me{
   width: auto;
   margin-left: 0;
+}
+/* Usercreate*/
+.create-user{
+  margin-bottom: 100px;
+}
+.session-new{
+  margin-bottom: 150px;
+  margin-top: 30px;
+}
+.remember-me{
+  margin-left: 15px;
+}
+.session-new-title{
+  margin-top: 100px;
 }
 
 /* Users index */
@@ -1330,10 +1372,11 @@ height: 720px;
     display: flex;
     width:400px;
     .rank-icon{
-      width:25px;
-      height:25px;
+      width:27px;
+      height:23px;
       margin-top: 1px;
-      padding-bottom: 0px;
+      background-image: image-url('rank.jpeg');
+      background-size: cover;
     }
     .kuuhaku{
       width:15px;
