@@ -16,7 +16,7 @@ describe "SignUps", type: :system do
     fill_in "パスワード",with: "foo"
     fill_in "パスワード再入力",with: "bar"
 
-    click_button "Create my account"
+    click_button "登録"
 
     expect(current_path).to eq '/users'
   end
@@ -28,7 +28,7 @@ describe "SignUps", type: :system do
     fill_in "メールアドレス", with: "essei@valid.com"
     fill_in "パスワード",with: "password"
     fill_in "パスワード再入力",with: "password"
-    click_button "Create my account"
+    click_button "登録"
     }.to change(User, :count).by(1)
 
 

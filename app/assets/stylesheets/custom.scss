@@ -94,30 +94,30 @@ header{
 .home{
   background-color:rgba(204,204,204,0.3);
   width:100%;
-  height:600px;
+
 }
 
 .top-wrapper{
     position:relative;
     height: 400px;
     text-align: center;
-    margin-bottom: 300px;
+    margin-bottom: 230px;
 
   h1{
-    color: #009999;
+  
     padding-top: 20px;
 
   }
   .signup{
     background-color: #009999;
     border-color: white;
-
+    opacity:0.9;
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
     position: absolute;
     position: absolute;
-      top:127%;
-      left:54%;
+      top:128%;
+      left:42%;
 
    }
   .login{
@@ -127,7 +127,7 @@ header{
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
     position: absolute;
-      top:127%;
+      top:128%;
       left:39%;
 
   }
@@ -135,7 +135,7 @@ header{
     background-color: #009999;
     opacity:0.9;
     position: absolute;
-      top:127%;
+      top:128%;
       left:43%;
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
@@ -165,16 +165,28 @@ header{
   }
 }
 
+.about-for-home{
+  background-color: white;
+  margin-top: 100px;
+}
+
+.sample-nurie{
+  width:400px;
+  height:250px;
+}
+
 
 /*about*/
 .about{
-  background-color:rgba(126,126,126,0.3);
+  background-color:rgba(126,126,126,0.2);
   border-radius: 10px;
   padding:30px;
+  margin-bottom: 100px;
 }
 .sample-image{
-  width:400px;
+  width:300px;
   height:250px;
+  margin-bottom: 30px;
 }
 
 /* typography */
@@ -367,7 +379,7 @@ input {
 }
 .session-new{
   margin-bottom: 150px;
-  margin-top: 30px;
+  margin-top: 60px;
 }
 .remember-me{
   margin-left: 15px;
@@ -1970,4 +1982,40 @@ height: 720px;
   }
 
 
+}
+
+/*aboutMe*/
+.about-me{
+.about1{
+  display: flex;
+}
+.about2{
+  display: flex;
+}
+.about3{
+  display: flex;
+}
+.about4{
+  display: flex;
+}
+}
+
+.explanation-image-1{
+  width:230px;
+  height: 300px;
+}
+
+.explanation-image-2{
+  width:390px;
+  height: 90px;
+}
+
+.explanation-image-3{
+  width:300px;
+  height: 200px;
+}
+
+.explanation-image-4{
+  width:300px;
+  height: 200px;
 }
