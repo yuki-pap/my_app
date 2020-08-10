@@ -3,20 +3,18 @@
 
     <h1>さあ、みんなと一緒に勉強しよう！</h1>
 
-  
+
 
 
     <%= image_tag asset_path("study.jpg") %>
 
 
     <% unless logged_in? %>
-      <%= link_to "新規登録して利用する", signup_path, class: "btn btn-lg btn-primary signup" %>
+      <%= link_to "今すぐ学習を開始する", signup_path, class: "btn btn-lg btn-primary signup" %>
 
-      <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary login" %>
+
     <% else %>
       <%= link_to "今日の勉強を開始する", new_study_path,class: "btn btn-lg btn-primary benkyo"%>
     <% end %>
-
-
 
 </div>
