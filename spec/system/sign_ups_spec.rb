@@ -6,7 +6,7 @@ describe "SignUps", type: :system do
 
   before do
     visit root_path
-    click_link "新規登録して利用する"
+    click_link "今すぐ学習を開始する"
   end
 #許可されない入力でのユーザー登録失敗
   it "user unsuccessfully signs up" do
