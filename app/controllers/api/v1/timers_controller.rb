@@ -102,7 +102,7 @@ class Api::V1::TimersController < ApiController
 
       end
 
-       current_user.timers.first.destroy
+       current_user.timers.first&.destroy 
 
     end
 end

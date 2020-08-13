@@ -43,8 +43,12 @@ describe "Login", type: :system do
     end
     it 'log_out' do
 
-      
+      visit root_path
+
+
       click_link 'ログアウト'
+    
+
       expect(page).to have_current_path root_path
       expect(page).to have_link 'ログイン', href: login_path
       expect(page).to_not have_link nil, href: user_path(@user)
