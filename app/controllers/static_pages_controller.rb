@@ -3,6 +3,9 @@ class StaticPagesController < ApplicationController
 
     @view = "home"
 
+    #Timer.destroy_all
+
+
 
 
 

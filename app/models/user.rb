@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token,:reset_token
   has_many :studies, dependent: :destroy
   has_many :time_by_fields, dependent: :destroy
+  has_many :timers, dependent: :destroy
   has_many :months, dependent: :destroy
   has_many :markers, dependent: :destroy
   has_many :graphs, dependent: :destroy

@@ -37,6 +37,7 @@ import VuejsDialog from 'vuejs-dialog';
 import VuejsDialogMixin from 'vuejs-dialog/dist/vuejs-dialog-mixin.min.js';
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 Vue.use(VuejsDialog);
+Vue.config.productionTip = false; 
 import axios from 'axios';
 
 
@@ -52,6 +53,7 @@ var app = new Vue({
     el: '#hello',
     data:{
       show: false,
+      showAbout: false,
     },
 
 
@@ -66,6 +68,10 @@ var app = new Vue({
       methods: {
         change: function() {
           this.show = !(this.show)
+
+        },
+        changeShowAbout: function(){
+          this.showAbout = !(this.showAbout)
         }
       }
 

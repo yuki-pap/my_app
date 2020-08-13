@@ -27,6 +27,7 @@
 </div>
 <div class="side-menu">
   <%= image_tag asset_path('door.png'),class: "side-icon" %>
-  <%= link_to "ログアウト", logout_path, method: :delete ,class: "link"%>
+  <%= link_to "ログアウト", logout_path, method: :delete ,class: "link", data: {confirm: "ログアウトしてもよろしいですか?",
+  cancel: 'キャンセル', commit: 'ログアウト'} ,title: '確認'%>
 </div>
 </div>

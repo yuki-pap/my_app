@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title)%>| 俺の勉強部屋</title>
+    <title><%= yield(:title)%>| ぬり絵勉強部屋</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,15 +17,17 @@
 
 <header class="navbar navbar-fixed-top navbar-inverse head">
   <div class="container">
-    <%= link_to "俺の勉強部屋", root_path, id: "logo" %>
+
     <nav>
       <ul>
 
         <% if logged_in? %>
-
-          <li><%= link_to "ソーシャル機能", current_user ,class: "head-link btn btn-lg btn-primary"  %></li>
-          <li><%= link_to "学習記録機能", study_path(current_user.studies&.find_by(date: Time.current.strftime("%Y年%m月%d日"))), class: "head-link btn btn-lg btn-primary" %></li>
+          <li><%= link_to "ログアウト", logout_path,method: :delete, class: "head-link btn btn-lg btn-primary ", data: {confirm: "ログアウトしてもよろしいですか?",
+          cancel: 'キャンセル', commit: 'ログアウト'} ,title: '確認' %></li>
+          <li><%= link_to "ソーシャル", current_user ,class: "head-link btn btn-lg btn-primary"  %></li>
+          <li><%= link_to "学習記録", study_path(current_user.studies&.find_by(date: Time.current.strftime("%Y年%m月%d日"))), class: "head-link btn btn-lg btn-primary" %></li>
           <li><%= link_to "ホームへ戻る", root_path, class: "head-link btn btn-lg btn-primary" %></li>
+
         <% else %>
           <li><%= link_to "ログイン", login_path, class: "head-link btn btn-lg btn-primary " %></li>
         <% end %>
@@ -46,7 +48,7 @@
 
 <footer class="footer">
       <small>
-        <p>俺の勉強部屋</p>
+        <p>ぬり絵勉強部屋</p>
       </small>
       <nav>
         <ul>

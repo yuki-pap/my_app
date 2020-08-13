@@ -1,20 +1,15 @@
 <% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= gravatar_for @user %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "プロフィール画面に移動", @user %></span>
 
-    </section>
+     <p class="follow-or-followed-title"><%= @title %>一覧</p>
 
-  </aside>
+      <p class="back-link-to-profile"><%= link_to "プロフィール画面に戻る", @user %></p>
 
-  <%= will_paginate %>
 
-  <ul class="users">
+
+
+  <div class="users-follow">
     <% @users.each do |user| %>
-      <li>
+      <div class="user-follow">
         <%= gravatar_for user, size: 50 %>
         <%= link_to user.name, user %>
         <% if current_user == @user %>
@@ -23,22 +18,19 @@
             <%= form_with scope: :relationship, url: relationship_path,
                 method: :delete, local: true do |f|%>
                 <div><%= hidden_field_tag :followed_id, user.id %></div>
-              <%= f.submit "フォローを解除する。", class: "btn" %>
+              <%= f.submit "フォローを解除する。", class: "btn follow-button " %>
             <% end %>
           <% else %>
             <%= form_with model: current_user.active_relationships.build , local: true do |f| %>
               <div><%= hidden_field_tag :followed_id, user.id %></div>
-              <%= f.submit "フォロー", class: "btn btn-primary" %>
+              <%= f.submit "フォロー", class: "btn btn-primary follow-button" %>
             <% end %>
 
           <% end %>
           </div>
         <% end %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 
   <%= will_paginate %>
-
-
-</div>

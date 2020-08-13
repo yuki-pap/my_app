@@ -31,10 +31,12 @@
 
                 <div class="dairy-wrapper">
                   <p class='dairy'><%= @dairy_today %></p>
+                <% if @user.id == current_user.id %>
                   <div class="dairy-edit-link">
                     <%= link_to '日記を書く', edit_diary_path(@study), class: 'link' %>
                     <%= image_tag asset_path('fudepen.png'),class: "side-icon" %>
                   </div>
+                <% end %>
                 </div>
               </div>
 

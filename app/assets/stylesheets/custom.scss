@@ -87,56 +87,88 @@ header{
  }
 
 
-
 /*bootstrap*/
 
 /*home*/
+
+.home-middle{
+  margin-top: 280px;
+  margin-bottom: 100px;
+  margin-left: 200px;
+  width:900px;
+  border-top:1px solid gray;
+  border-bottom:1px solid gray;
+  padding-bottom: 40px;
+}
+
+.home-middlee{
+;
+ }
+
+.image-home-aicon{
+  width:350px;
+  height: 350px;
+  opacity: 0.8;
+  position: absolute;
+    top:90px;
+    right: 300px;
+}
 .home{
-  background-color:rgba(204,204,204,0.3);
+
   width:100%;
 
 }
 
 .top-wrapper{
     position:relative;
-    height: 400px;
-    text-align: center;
+
+    margin-left: 200px;
     margin-bottom: 230px;
 
   h1{
-  
+
     padding-top: 20px;
 
   }
+  .top-about-me{
+    color:gray;
+    margin-left:290px;
+  }
+  .title-home{
+    font-size:40px;
+    letter-spacing: inherit;
+    margin-top: 50px;
+  }
+
   .signup{
     background-color: #009999;
     border-color: white;
     opacity:0.9;
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+
     position: absolute;
-    position: absolute;
-      top:128%;
-      left:42%;
+      top:160px;
+      left:200px;
 
    }
   .login{
     background-color: #009999;
     border-color: white;
-
+    opacity: 0.7;
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
     position: absolute;
-      top:128%;
-      left:39%;
+      top:240px;
+      left:150px;
 
   }
   .benkyo{
     background-color: #009999;
     opacity:0.9;
     position: absolute;
-      top:128%;
-      left:43%;
+    top:160px;
+    left:200px;
     transition: all 0.3s ease 0s;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
   }
@@ -175,6 +207,71 @@ header{
   height:250px;
 }
 
+
+.step{
+border-top: 1px solid gray;
+border-bottom: 1px solid gray;
+margin-bottom: 100px;
+background-color:rgba(126,126,126,0.1);
+width:100%;
+ h2{
+   margin-right: 100px;
+   margin-bottom: 40px;
+ }
+
+.home-about-wrapper{
+
+.home-about1{
+  display: flex;
+  margin-left: 10px;
+  margin-right: 3px;
+  margin-bottom: 30px;
+  .home-about-p1{
+    width:145px;
+  }
+}
+
+.home-about3{
+  display: flex;
+  margin-left: 20px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+.home-about4{
+  display: flex;
+  margin-left: 20px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
+
+.explanation-image-1{
+  width:230px;
+  height: 300px;
+  margin-left: 30px;
+  border-radius: 10px;
+}
+
+
+.explanation-image-3{
+  width:300px;
+  height: 200px;
+  margin-left: 30px;
+
+}
+
+.explanation-image-4{
+  width:300px;
+  height: 200px;
+  margin-left: 30px;
+}
+
+}
+
+}
+.home-about-wrapper{
+  display: flex;
+}
 
 /*about*/
 .about{
@@ -554,6 +651,7 @@ input {
   width:400px;
   height:180px;
   margin-left: 10px;
+  padding: 10px;
 }
 
 .dairy-title{
@@ -580,8 +678,7 @@ input {
     height:230px;
     border:1px solid gray;
     border-radius: 10px;
-
-
+    padding: 10px;
   }
   .dairy-edit-link{
     display: flex;
@@ -1252,11 +1349,40 @@ input {
        }
 
        }
-
   }
 
-
 }
+
+.users-follow{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.user-follow{
+  width:230px;
+  margin-left: 20px;
+  padding-bottom: 20px;
+  border-right: 1px solid black;
+}
+
+.follow-or-followed-title{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-size:22px;
+}
+
+.back-link-to-profile{
+  position: absolute;
+      top:167px;
+      right: 150px;
+}
+
+.follow-button{
+  width:160px;
+}
+
+
+
 
 .users{
   margin-bottom:30px;
@@ -1464,9 +1590,6 @@ height: 720px;
 /*dairy/edit*/
 .edit-wrapper{
   height:600px;
-
-
-
   .editer{
 
     margin-top:5%;
@@ -1500,8 +1623,6 @@ height: 720px;
   }
 }
 /*dairy/index*/
-
-
 .contents-wrapper{
   margin-top:4%;
   height:760px;
@@ -1524,7 +1645,6 @@ height: 720px;
 
       p{
         color:black;
-
       }
     }
   }
@@ -1539,9 +1659,7 @@ height: 720px;
 
 
 /*marker#new*/
-
 .new-markers{
-
   h1{
     text-align: left;
     font-size: 35px;
@@ -1577,7 +1695,6 @@ height: 720px;
         margin-right: 30px;
         width:130px;
         font-weight:bold;
-
       }
 
     }
@@ -1586,7 +1703,6 @@ height: 720px;
       .form-control{
         margin-right: 30px;
         width:300px;
-
       }
 
     }
@@ -1632,6 +1748,7 @@ height: 720px;
 #Menu{
   .menu{
     width: 200px;
+    cursor: pointer;
   }
   width: 200px;
   margin-top: 100px;
@@ -1882,6 +1999,11 @@ height: 720px;
 
 }
 
+.timer-marker-color{
+  padding:4px;
+  border-radius: 4px;
+}
+
 .timer-switch{
   display: flex;
   margin-left: 50px;
@@ -1985,37 +2107,100 @@ height: 720px;
 }
 
 /*aboutMe*/
+.open-about-me{
+display:flex;
+  position: absolute;
+    top:399px;
+    right:370px;
+  cursor: pointer;
+  font-size: 15px;
+  .image-about-me-title{
+    background-image: image-url('book_diary.png');
+    background-size: cover;
+    width:17px;
+    height:17px;
+    margin-top: 4px;
+    margin-right: 5px;
+  }
+  .open-about-me:hover{
+    background-color: rgba(126,126,126,0.3);
+  }
+
+}
 .about-me{
+  width:1000px;
+  height: 980px;
+
+  background-color: white;
+  border:1px solid black;
+  border-radius: 10px;
+  padding:15px;
+position:absolute;
+  top:180px;
+  left:190px;
+.about-me-title{
+  margin-top:40px;
+  margin-left: 40px;
+}
+.about-close{
+  z-index: 15;
+  background-image: image-url('batujirushi.png');
+  background-size: cover;
+  width:40px;
+  height:40px;
+  cursor: pointer;
+  position:absolute;
+    top:0px;
+    left:0px;
+}
 .about1{
   display: flex;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 .about2{
   display: flex;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 .about3{
   display: flex;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 .about4{
   display: flex;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 }
+
 
 .explanation-image-1{
   width:230px;
   height: 300px;
+  margin-left: 40px;
 }
 
 .explanation-image-2{
   width:390px;
   height: 90px;
+  margin-left: 40px;
 }
 
 .explanation-image-3{
   width:300px;
   height: 200px;
+  margin-left: 40px;
+
 }
 
 .explanation-image-4{
   width:300px;
   height: 200px;
+  margin-left: 40px;
 }
