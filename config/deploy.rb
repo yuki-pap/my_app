@@ -14,18 +14,13 @@ set :branch, 'master'
 # deploy先のディレクトリ。
 set :deploy_to, '/var/www/rails/my_app'
 
-
 set :linked_files, fetch(:linked_files, []).push('config/master.key','config/database.yml','config/initializers/shrine.rb')
-
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
-
 set :keep_releases, 3
 
-
 set :rbenv_ruby, '2.6.6'
-
 
 set :log_level, :debug
 
