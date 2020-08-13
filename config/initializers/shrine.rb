@@ -9,6 +9,7 @@ if Rails.env.production?
     secret_access_key: Rails.application.secrets.aws_secret_access_key,
     region:            'ap-northeast-1',
     bucket:            'www.obenkyo.work',
+  }
 
   Shrine.storages = {
     cache: Shrine::Storage::S3.new(prefix: 'cache', **s3_options),
