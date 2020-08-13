@@ -28,7 +28,7 @@ gem 'factory_bot_rails', '~> 4.11'
 
 gem 'rails-controller-testing'
 
-gem 'bootstrap-sass','3.3.7'
+gem 'bootstrap-sass','3.4.1'
 
 gem 'dotenv-rails'
 gem 'webpacker', github: 'rails/webpacker'
