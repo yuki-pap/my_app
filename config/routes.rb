@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'ranks/month'
 
   resources :analyses, only: [:index]
-  
+
   get 'users/feed'
   resources :users
 
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :studies
 
+  resources :sample_sessions, only: [:create]
 
   resources :account_activations, only: [:edit]
 
@@ -68,6 +69,7 @@ Rails.application.routes.draw do
       resources :tasks
       resources :time_by_field_todays, only: [:index]
       resources :time_by_fields, only: [:index]
+      resources :time_stamps
       resources :feeds, only: [:index]
       resources :timers
     end

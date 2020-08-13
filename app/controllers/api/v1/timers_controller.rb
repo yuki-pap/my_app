@@ -17,7 +17,34 @@ class Api::V1::TimersController < ApiController
        #学習時間の情報
        timer_hash['today'] = today_time
        timer_hash['month'] = month_time
-              timer_hash['all'] = all_time
+       timer_hash['all'] = all_time
+       if @timer = current_user.timers.first
+
+         unless @timer.stop_time
+
+           elapsed_time = (Time.now - Time.parse(@timer.start_time) ).to_i
+           start_time = (@timer.time_to_calculate * 60) + @timer.stopped_time -  elapsed_time
+           if start_time > 0
+             timer_hash['start_time_min'] = start_time / 60
+             timer_hash['start_time_sec'] = start_time % 60
+             timer_hash['time'] = current_user.timers.first.time_to_calculate
+             timer_hash['id'] = current_user.timers.first.id
+           else
+             timer_hash['fin_timer'] = true
+             timer_hash['time'] = current_user.timers.first.time_to_calculate
+             timer_hash['id'] = nil
+           end
+         else
+           start_time = (@timer.time_to_calculate * 60) + @timer.stopped_time  - (Time.parse(@timer.stop_time) - Time.parse(@timer.start_time) ).to_i
+           timer_hash['start_time_min'] = start_time / 60
+           timer_hash['start_time_sec'] = start_time % 60
+           timer_hash['time'] = @timer.time_to_calculate
+           timer_hash['id'] = @timer.id
+           timer_hash['stopping'] = true
+
+         end
+        end
+
         render :json => timer_hash
     end
 
@@ -60,20 +87,22 @@ class Api::V1::TimersController < ApiController
 
             @time_by_field_today.update_attributes(count: @count)
 
-
-            graph_hash ={}
-            render :json => graph_hash
+            id_hash = {}
+            id_hash[:id] = nil
+            render :json => id_hash
         else
            num = @study.count - 1
            @study.update_attributes(count: num)
            n = @month.time_count - 1
            @month.update_attributes(time_count: n)
-           graph_hash = {}
-           render :json => graph_hash
+           id_hash = {}
+           render :json => id_hash
 
          end
 
       end
+
+       current_user.timers.first.destroy
 
     end
 end

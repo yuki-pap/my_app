@@ -20,10 +20,12 @@
 # Learn more: http://github.com/javan/whenever
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 
-set :path, "my_app/current"
+set :path, "/var/www/rails/my_app/current"
 
-set :output, "#{Rails.root.to_s}/log/cron.log"
+set :output, "/var/www/rails/my_app/current/log/cron.log"
+
+job_type :rake, 'cd :path && :environment_variable=:environment bundle exec rake :task :output'
 
 every 1.day, at: '0:00 am' do
-  rake "study:create_study"
+  rake "study:create_study RAILS_ENV=production"
 end
