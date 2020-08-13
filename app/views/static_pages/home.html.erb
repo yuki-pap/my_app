@@ -2,9 +2,7 @@
 
 
     <p class="title-home">ぬり絵勉強部屋</p>
-    <% Timer.where(user_id:current_user.id).each do |f| %>
-      <%= f %>
-    <% end %>
+  
     <p class="paragraph-home1">ぬり絵勉強法と、ソーシャル機能でモチベーションを管理！</p>
     <%=link_to "ぬり絵勉強法とは？",about_path,class:"top-about-me"%>
 
