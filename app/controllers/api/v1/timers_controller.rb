@@ -18,7 +18,7 @@ class Api::V1::TimersController < ApiController
        timer_hash['today'] = today_time
        timer_hash['month'] = month_time
        timer_hash['all'] = all_time
-       if @timer = current_user.timers.first
+       if @timer = current_user.timers.order(created_at: :desc).first
 
          unless @timer.stop_time
 
@@ -27,11 +27,12 @@ class Api::V1::TimersController < ApiController
            if start_time > 0
              timer_hash['start_time_min'] = start_time / 60
              timer_hash['start_time_sec'] = start_time % 60
-             timer_hash['time'] = current_user.timers.first.time_to_calculate
-             timer_hash['id'] = current_user.timers.first.id
+             timer_hash['time'] = @timer.time_to_calculate
+             timer_hash['id'] = @timer.id
            else
              timer_hash['fin_timer'] = true
-             timer_hash['time'] = current_user.timers.first.time_to_calculate
+             timer_hash['time'] = @timer.time_to_calculate
+             timer_hash['color'] =@timer.color
              timer_hash['id'] = nil
            end
          else
@@ -50,7 +51,7 @@ class Api::V1::TimersController < ApiController
 
 
     def create
-
+      if Timer.exists?(user_id: current_user.id)
       timer_count = params[:timer][:count].to_i
       @study = current_user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
       num = @study.count + timer_count
@@ -102,7 +103,10 @@ class Api::V1::TimersController < ApiController
 
       end
 
-       current_user.timers.first&.destroy 
+       current_user.timers.each do |f|
+         f.destroy
+       end
+     end
 
     end
 end

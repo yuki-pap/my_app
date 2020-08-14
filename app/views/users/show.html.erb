@@ -50,6 +50,8 @@
 
 </div>
 
+<div class="study-page-link-wrapper"><%= image_tag asset_path('pen_mark.png'),class: "study-page-link-image" %><%= link_to "勉強を始める！",study_path(current_user.studies&.find_by(date: Time.current.strftime("%Y年%m月%d日"))),class:"study-page-link"%></div>
+
 
 
 

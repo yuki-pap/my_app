@@ -62,6 +62,17 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "my_app_#{Rails.env}"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_caching = true
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.host }
+  ActionMailer::Base.smtp_settings = {
+      :address =>        Rails.application.secrets.address,
+      :port =>           587,
+      :domain =>         Rails.application.secrets.domain,
+      :authentication => :login,
+      :user_name =>      Rails.application.secrets.access_key_id,
+      :password =>       Rails.application.secrets.secret_access_key
+  }
 
   config.action_mailer.perform_caching = false
 

@@ -29,7 +29,7 @@ class ApiController < ActionController::API
   end
 
   def range
-     Date.today.beginning_of_day..Date.today.end_of_day
+     Time.zone.today.beginning_of_day..Time.zone.today.end_of_day
   end
 
 end

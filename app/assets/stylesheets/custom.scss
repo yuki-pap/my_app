@@ -625,6 +625,31 @@ input {
 }
 
 /*user_show*/
+.study-page-link-wrapper{
+  background-color: rgba(126,126,126,0.3);
+  border-radius: 40px;
+  padding:15px;
+  border:1px solid gray;
+  display: inline-flex;
+  position: absolute;
+    top:160px;
+    right:100px;
+  .study-page-link-image{
+    width:38px;
+    height: 38px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }.study-page-link{
+    font-size: 37px;
+    color:gray;
+  }
+  .study-page-link:hover{
+    text-decoration: none;
+  }
+}
+.study-page-link-wrapper:hover{
+  background-color: white;
+}
 .user-content{
   margin-left: 100px;
   margin-top: 100px;
@@ -1033,6 +1058,7 @@ input {
   background-color: white;
 
 }
+
 
 
 .nurie_table{
@@ -2203,4 +2229,16 @@ position:absolute;
   width:300px;
   height: 200px;
   margin-left: 40px;
+}
+
+.download-link{
+  padding: 5px;
+  border:1px solid gray;
+  color:black;
+  background-color: rgba(126,126,126,0.4);
+  border-radius: 4px;
+}
+.download-link:hover{
+
+  color: black;
 }

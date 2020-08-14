@@ -107,7 +107,8 @@ group :production, :staging do
     gem 'unicorn'
     gem 'fog-aws'
     gem 'listen', '>= 3.0.5', '< 3.2'
-    gem "aws-sdk-s3" 
+    gem "aws-sdk-s3"
+    gem 'aws-ses'
 end
 
 
