@@ -61,7 +61,7 @@
         id:[]
       };
     },
-    mounted: async function() {
+    created: async function() {
        await axios
        .get('/api/v1/timers.json')
        .then(response => (this.timerList = response.data))
@@ -84,10 +84,11 @@
          this.show = true;
 
        }else if (this.timerList['fin_timer']) {
-          count = this.timerList['time'] / 15;
-          color = this.timerList['color'];
+          var count = this.timerList['time'] / 15;
+          var color = this.timerList['color'];
           this.timerId = this.timerList['id'];
           this.updateTimer(count,color);
+
        }else{
 
        }

@@ -17,7 +17,8 @@ class Api::V1::HistoriesController < ApiController
   end
 
   def index
-    @histories = current_user.histories
+    @histories = current_user.histories.order(:created_at)
+
     history_hash = {}
     @histories.each do |history|
       id = history.number
@@ -25,6 +26,7 @@ class Api::V1::HistoriesController < ApiController
       percent = 100 - history.percent
       create = history.created_at.strftime("%Y年%m月%d日")
       history_hash[id] = {url: url, percent: percent,create: create}
+  
     end
 
     render :json => history_hash
@@ -73,7 +75,7 @@ class Api::V1::HistoriesController < ApiController
       graph_hash['red'] = current_user.markers.find_by(number:1).field
       graph_hash['yellow'] = current_user.markers.find_by(number:2).field
       graph_hash['blue'] = current_user.markers.find_by(number:3).field
-      graph_hash['lightBlue'] = current_user.markers.find_by(nuumber:4).field
+      graph_hash['lightBlue'] = current_user.markers.find_by(number:4).field
       graph_hash['green'] = current_user.markers.find_by(number:5).field
       graph_hash['yellowGreen'] = current_user.markers.find_by(number:6).field
       graph_hash
