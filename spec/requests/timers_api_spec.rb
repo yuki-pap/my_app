@@ -18,7 +18,7 @@ describe "timers", type: :request do
 
           expect {
             post api_v1_timers_path, params: {timer:{count: 2,color:'red'}}
-          }.to change(user.graphs.where(fill:true), :count).by(2)
+          }.to change(user.graphs.where(fill:true), :count).by(0)
           expect(response).to have_http_status(:success)
 
 
