@@ -109,6 +109,7 @@ group :production, :staging do
     gem 'listen', '>= 3.0.5', '< 3.2'
     gem "aws-sdk-s3"
     gem 'aws-sdk', '~>1'
+    gem 'aws-sdk-ses', '~> 1.6'
 end
 
 
