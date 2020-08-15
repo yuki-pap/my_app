@@ -66,8 +66,7 @@ gem 'bootstrap-will_paginate','1.0.0'
 
 gem 'chart-js-rails'
 
-gem 'aws-sdk', '~>1'
-gem 'aws-sdk-ses', '~> 1.6'
+gem 'aws-sdk-rails'
 
 
 # Use Redis adapter to run Action Cable in production
