@@ -1,12 +1,10 @@
 # ぬり絵勉強部屋
 https://www.obenkyo.work
 ぬり絵勉強法で学習を記録し、ソーシャル機能で友達とも繋がれるWebアプリケーションです。
-https://user-images.githubusercontent.com/65793528/90324035-abe89b00-dfa4-11ea-8e5f-cf2f41b5e66e.png
-
-#クラウドアーキテクチャー
-https://user-images.githubusercontent.com/65793528/90324031-a25f3300-dfa4-11ea-85c5-e31363f374e8.png
-
-#機能一覧
+<img width="1081" alt="スクリーンショット 2020-08-16 6 34 08" src="https://user-images.githubusercontent.com/65793528/90324035-abe89b00-dfa4-11ea-8e5f-cf2f41b5e66e.png">
+# クラウドアーキテクチャー
+![cloud](https://user-images.githubusercontent.com/65793528/90324031-a25f3300-dfa4-11ea-85c5-e31363f374e8.png)
+# 機能一覧
 ▼ソーシャル機能
 	ユーザー登録
 	ログイン、ログアウト
