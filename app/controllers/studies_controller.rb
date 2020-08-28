@@ -5,9 +5,13 @@ class StudiesController < ApplicationController
   before_action :create_marker, only:[:show]
   protect_from_forgery except: [:create, :update]
 #selectなどを使ってパフォーマンス上げる
+
+
   def show
 
     #グラフの作成
+
+
     unless current_user.months.find_by(month: Time.current.strftime("%Y年%m月"))
       month_sum = 0
         current_user.studies.each do |study|
@@ -18,74 +22,33 @@ class StudiesController < ApplicationController
 
       current_user.months.create(month:Time.current.strftime("%Y年%m月"),
                                  time_count: month_sum)
+
+    end
+
+
+
       @study = current_user.studies.find_by(date: Time.current.strftime("%Y年%m月%d日"))
 
-
-
-    end
-
-    #画像保存
-
-    @study = current_user.studies.find(params[:id])
-
-    @studies = current_user.studies.paginate(page:params[:page],per_page: 7).order(created_at: :desc)
-
-    @count_all = 0
-
-    @studies.each do |f|
-      @count_all += f.count
-    end
-
-
-
-
-    case (@count_all * 15) % 60
-    when 0
-      @study_all_time = "#{(@count_all * 15) / 60}時間"
-    when 15
-      @study_all_time = "#{(@count_all * 15) / 60}時間15分"
-    when 30
-      @study_all_time = "#{(@count_all * 15) / 60}時間30分"
-    else 45
-      @study_all_time = "#{(@count_all * 15) / 60}時間45分"
-
-    end
-
-
-    @study_yesterday = current_user.studies.find_by(date: Time.current.yesterday.strftime("%Y年%m月%d日"))
-
-    @month_all = 0
-    current_user.studies.each do |f|
-      if f.created_at.strftime("%Y年%m月") == Time.current.strftime("%Y年%m月")
-        @month_all += f.count
-      end
-    end
-
-
-    case (@month_all * 15) % 60
-    when 0
-      @study_all_time_month = "#{(@month_all * 15) / 60}時間"
-    when 15
-      @study_all_time_month = "#{(@month_all * 15) / 60}時間15分"
-    when 30
-      @study_all_time_month = "#{(@month_all * 15) / 60}時間30分"
-    else 45
-      @study_all_time_month = "#{(@month_all * 15) / 60}時間45分"
-
-    end
-
-
-
+      @studies = current_user.studies.paginate(page:params[:page],per_page: 7).order(created_at: :desc)
 
   end
 
+
+
+
+
   def new
+
     @study = current_user.studies.find_by(date: Time.zone.now.strftime("%Y年%m月%d日"))
 
     if @study
       redirect_to study_path(@study)
     end
+
   end
+
+
+
 
 
   def update
@@ -117,23 +80,24 @@ class StudiesController < ApplicationController
 
 
   def create
+
     @study = current_user.studies.build(count: 0)
 
     if @study.save
       redirect_to @study
+
+
     else
       studies = current_user.studies
 
       studies.each do |study|
-
-        if (study.created_at.to_s.match(/#{Date.today.to_s}.+/))
-          @study = study
-        end
-
+          if (study.created_at.to_s.match(/#{Date.today.to_s}.+/))
+            @study = study
+          end
       end
-
       redirect_to @study
     end
+
 
   end
 
